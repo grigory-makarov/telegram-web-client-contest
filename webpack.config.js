@@ -4,6 +4,7 @@ const CopyPlugin = require('webpack-copy-plugin');
 const CleanPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
 const {ProgressPlugin} = require('webpack');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 const isDevelopment = !isProduction;
@@ -38,9 +39,9 @@ module.exports = {
                 }
             },
             {
-                test: /\.css$/i,
+                test: /\.(c|le|sa|sc)ss$/i,
                 use: [
-                    'style-loader',
+                    isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
                         options: {
@@ -48,7 +49,12 @@ module.exports = {
                             sourceMap: isDevelopment
                         }
                     },
-
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: isDevelopment
+                        }
+                    }
                 ]
             }
 
@@ -63,6 +69,10 @@ module.exports = {
         new HtmlPlugin({
             template: path.resolve(srcPath, 'index.html'),
             minify: isProduction
+        }),
+        new MiniCssExtractPlugin({
+            filename: isDevelopment ? '[name].css' : '[name].[hash].css',
+            chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css'
         }),
         new CopyPlugin({
             dirs: [

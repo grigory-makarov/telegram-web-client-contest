@@ -12,7 +12,6 @@
     "downlevelIteration": true,
     "strict": true,
     "noFallthroughCasesInSwitch": true,
-    "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "typeRoots": [
       "node_modules"
@@ -30,9 +29,18 @@
       "@telegram/uikit": [
         "lib/uikit/index.ts"
       ]
-    }
+    },
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules",
+        "options": {
+          "customMatcher": "\\.(c|le|sa|sc)ss$"
+        }
+      }
+    ]
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "src/**/*.scss"
   ]
 }
