@@ -1,0 +1,34 @@
+{
+  "name": "telegram-web",
+  "version": "1.0.0",
+  "description": "Web client for Telegram Messenger",
+  "scripts": {
+    "build": "webpack --config webpack.config.js --mode production",
+    "serve": "webpack-dev-server --config webpack.config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/html-webpack-plugin": "^3.2.1",
+    "@types/node": "^12.12.5",
+    "@types/webpack": "^4.39.8",
+    "@types/webpack-dev-server": "^3.4.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "ts-loader": "^6.2.1",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
+    "typescript": "^3.6.4",
+    "typescript-plugin-css-modules": "^2.0.2",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-copy-plugin": "0.0.4",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "dependencies": {
+    "rxjs": "^6.5.3"
+  }
+}
