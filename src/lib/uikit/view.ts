@@ -1,5 +1,5 @@
 import {TagName} from "./tag-name";
-import {assert, assertNotNil, List} from "@telegram/foundation";
+import {assert, List} from "@telegram/foundation";
 
 export class View {
     private _superview: View | null = null;
@@ -38,10 +38,11 @@ export class View {
     }
 
     public removeFromSuperview() {
-        assertNotNil(this._superview, "Missing superview to remove from");
-        this._superview!._subviews.remove(this);
-        this.element.remove();
-        this._superview = null;
+        if (this._superview) {
+            this._superview._subviews.remove(this);
+            this.element.remove();
+            this._superview = null;
+        }
     }
 
     private assertViewCanBecomeSubview(view: View) {
