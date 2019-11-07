@@ -26,6 +26,9 @@
     "paths": {
       "@telegram/foundation": [
         "lib/foundation/index.ts"
+      ],
+      "@telegram/uikit": [
+        "lib/uikit/index.ts"
       ]
     }
   },
