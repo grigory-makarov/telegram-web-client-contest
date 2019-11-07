@@ -24,6 +24,9 @@
     "emitDecoratorMetadata": true,
     "baseUrl": "./src",
     "paths": {
+      "@telegram/foundation": [
+        "lib/foundation/index.ts"
+      ]
     }
   },
   "include": [
