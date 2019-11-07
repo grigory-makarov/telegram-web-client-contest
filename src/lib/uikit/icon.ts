@@ -13,3 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import {View} from "./view";
+
+export class Icon extends View {
+    constructor(public path: string) {
+        super();
+    }
+}
