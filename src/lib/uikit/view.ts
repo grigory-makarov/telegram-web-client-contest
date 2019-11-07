@@ -1,5 +1,5 @@
 import {TagName} from "./tag-name";
-import {assert, List} from "@telegram/foundation";
+import {assert, List, notImplemented} from "@telegram/foundation";
 
 export class View {
     private _superview: View | null = null;
@@ -14,10 +14,6 @@ export class View {
         return this._subviews.copy();
     }
 
-    public get style(): CSSStyleDeclaration {
-        return this.element.style;
-    }
-
     constructor(private readonly tagName: TagName = TagName.div) {
         this.element = document.createElement(tagName);
     }
@@ -27,6 +23,18 @@ export class View {
         subview._superview = this;
         this.element.append(subview.element);
         this._subviews.append(subview);
+    }
+
+    public insertSubviewAt(subview: View, index: number) {
+        return notImplemented();
+    }
+
+    public insertSubviewAbove(subview: View, target: View) {
+        return notImplemented();
+    }
+
+    public insertSubviewBelow(subview: View, target: View) {
+        return notImplemented();
     }
 
     public addClassName(name: string) {
