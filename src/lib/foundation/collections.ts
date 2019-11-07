@@ -6,10 +6,6 @@ export class List<TElement> {
         return this.elements.length - 1;
     }
 
-    public get size(): number {
-        return this.count;
-    }
-
     public get count(): number {
         return this.elements.length;
     }
@@ -86,7 +82,7 @@ export class List<TElement> {
             do {
                 yield this.elements[currentIndex];
                 currentIndex += 1;
-            } while (currentIndex !== this.size);
+            } while (currentIndex !== this.count);
 
             return this.last;
         }
@@ -175,7 +171,7 @@ export class List<TElement> {
     }
 
     public shuffle(): void {
-        if (this.size > 2) {
+        if (this.count > 2) {
             for (const index of this.indices) {
                 this.exchangeAt(index, this.indices.randomInt());
             }
@@ -269,7 +265,7 @@ export class List<TElement> {
     }
 
     public elementsEqualBy(other: List<TElement>, closure: (first: TElement, second: TElement) => boolean): boolean {
-        if (this.size !== other.size) {
+        if (this.count !== other.count) {
             return false;
         }
 
@@ -393,10 +389,6 @@ export class Dictionary<TKey, TValue> {
 
     public get isNotEmpty(): boolean {
         return !this.isEmpty;
-    }
-
-    public get size(): number {
-        return this.count;
     }
 
     public get count(): number {
