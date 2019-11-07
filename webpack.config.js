@@ -87,7 +87,10 @@ module.exports = (env, argv) => {
             new CleanPlugin(),
             new HtmlPlugin({
                 template: path.resolve(srcPath, 'index.html'),
-                minify: isProduction
+                minify: {
+                    removeComments: true,
+                    collapseWhitespace: true
+                }
             }),
             new MiniCssExtractPlugin({
                 filename: isDevelopment ? '[name].css' : '[contenthash].css',
