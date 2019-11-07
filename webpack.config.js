@@ -18,7 +18,8 @@ module.exports = (env, argv) => {
         entry: path.resolve(srcPath, 'main.ts'),
         output: {
             path: buildPath,
-            filename: 'app.js'
+            filename: '[contenthash].js',
+            chunkFilename: '[contenthash].js'
         },
         resolve: {
             extensions: ['.ts', '.js'],
@@ -67,13 +68,14 @@ module.exports = (env, argv) => {
         },
         plugins: [
             new ProgressPlugin(),
+            new CleanPlugin(),
             new HtmlPlugin({
                 template: path.resolve(srcPath, 'index.html'),
                 minify: isProduction
             }),
             new MiniCssExtractPlugin({
-                filename: isDevelopment ? '[name].css' : '[name].[hash].css',
-                chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css'
+                filename: isDevelopment ? '[name].css' : '[contenthash].css',
+                chunkFilename: isDevelopment ? '[id].css' : '[contenthash].css'
             }),
             new CopyPlugin({
                 dirs: [
