@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlPlugin = require('html-webpack-plugin');
-const CopyPlugin = require('webpack-copy-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const CleanPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
 const {ProgressPlugin} = require('webpack');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
@@ -77,18 +77,16 @@ module.exports = (env, argv) => {
                 filename: isDevelopment ? '[name].css' : '[contenthash].css',
                 chunkFilename: isDevelopment ? '[id].css' : '[contenthash].css'
             }),
-            new CopyPlugin({
-                dirs: [
-                    {
-                        from: path.resolve(srcPath, 'meta'),
-                        to: buildPath
-                    },
-                    {
-                        from: path.resolve(srcPath, 'assets'),
-                        to: path.resolve(buildPath, 'assets')
-                    }
-                ]
-            })
+            new CopyPlugin([
+                {
+                    from: path.resolve(srcPath, 'meta'),
+                    to: buildPath
+                },
+                {
+                    from: path.resolve(srcPath, 'assets'),
+                    to: path.resolve(buildPath, 'assets')
+                }
+            ])
         ]
     }
 };
