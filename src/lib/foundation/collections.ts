@@ -302,7 +302,7 @@ export class List<TElement> {
         this.elements[index] = element;
     }
 
-    public insertAfter(target: TElement, element: TElement) {
+    public insertAfter(element: TElement, target: TElement) {
         const targetIndex = this.elements.indexOf(target);
 
         assert(targetIndex < 0, 'Element to insert after is not found!');
@@ -314,7 +314,7 @@ export class List<TElement> {
         ];
     }
 
-    public insertBefore(target: TElement, element: TElement) {
+    public insertBefore(element: TElement, target: TElement) {
         const targetIndex = this.elements.indexOf(target);
 
         assert(targetIndex < 0, 'Element to insert before is not found!');
