@@ -322,27 +322,14 @@ export class List<TElement> {
     }
 
     public insertAfter(element: TElement, target: TElement) {
-        const targetIndex = this.elements.indexOf(target);
-
-        assert(targetIndex >= 0, 'Element to insert after is not found!');
-
-        this.elements = [
-            ...this.elements.slice(0, targetIndex + 1),
-            element,
-            ...this.elements.slice(targetIndex - 1)
-        ];
+        const index = this.elements.indexOf(target);
+        assert(index >= 0);
+        this.insertAt(element, index + 1);
     }
 
     public insertBefore(element: TElement, target: TElement) {
-        const targetIndex = this.elements.indexOf(target);
-
-        assert(targetIndex >= 0, 'Element to insert before is not found!');
-
-        this.elements = [
-            ...this.elements.slice(0, targetIndex),
-            element,
-            ...this.elements.slice(targetIndex)
-        ];
+        const index = this.elements.indexOf(target);
+        this.insertAt(element, index);
     }
 
     public remove(element: TElement) {
