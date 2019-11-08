@@ -312,7 +312,7 @@ export class List<TElement> {
     }
 
     public insertAt(element: TElement, index: number) {
-        assert(index > 0 && index <= this.count, "Index is out of bounds");
+        assert(index >= 0 && index <= this.count, "Index is out of bounds");
 
         this.elements = [
             ...this.elements.slice(0, index),
