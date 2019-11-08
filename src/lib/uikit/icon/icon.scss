@@ -1,4 +1,4 @@
-/*
+/*!
  * Copyright 2019 Grigory Makarov <makkgregory@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,10 +14,12 @@
  * limitations under the License.
  */
 
-import {View} from "./view";
+.icon {
+  width: 20px;
+  height: 20px;
 
-export class Icon extends View {
-    constructor(public path: string) {
-        super();
-    }
+  svg {
+    width: 100%;
+    height: 100%;
+  }
 }

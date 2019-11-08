@@ -14,6 +14,15 @@
  * limitations under the License.
  */
 
-export * from './tag-name';
-export * from './view';
-export * from './icon/icon';
+import {View} from "../view";
+import {TagName} from "../tag-name";
+
+export class Icon extends View {
+    private readonly style = require('./icon.scss');
+
+    constructor(content: string) {
+        super(TagName.figure);
+        this.element.innerHTML = content;
+        this.addClassName(this.style.icon);
+    }
+}
