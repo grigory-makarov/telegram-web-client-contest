@@ -32,6 +32,7 @@ export class View {
 
     constructor(private readonly tagName: TagName = TagName.div) {
         this.element = document.createElement(tagName);
+        this.element.dataset['class'] = this.constructor.name;
     }
 
     public addSubview(subview: View) {
