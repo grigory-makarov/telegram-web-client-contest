@@ -16,4 +16,5 @@
 
 export * from './tag-name';
 export * from './view';
+export * from './button/button';
 export * from './icon/icon';
