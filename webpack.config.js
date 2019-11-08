@@ -48,7 +48,7 @@ module.exports = (env, argv) => {
         module: {
             rules: [
                 {
-                    test: /\.ts$/,
+                    test: /\.ts$/i,
                     use: {
                         loader: 'ts-loader',
                         options: {
