@@ -15,7 +15,7 @@
  */
 
 import {TagName} from "./tag-name";
-import {assert, List, notImplemented} from "@telegram/foundation";
+import {assert, List} from "@telegram/foundation";
 
 export class View {
     private _superview: View | null = null;
@@ -42,15 +42,27 @@ export class View {
     }
 
     public insertSubviewAt(subview: View, index: number) {
-        return notImplemented();
+        this.assertViewCanBecomeSubview(subview);
+        this._subviews.insertAt(subview, index);
+
+        const subviewBefore = this._subviews.get(index + 1);
+
+        if (subviewBefore) {
+            this.element.insertBefore(subview.element, subviewBefore.element);
+        } else {
+            this.element.append(subview.element);
+        }
     }
 
     public insertSubviewAbove(subview: View, target: View) {
-        return notImplemented();
+        const index = this._subviews.indexOf(target);
+        this.insertSubviewAt(subview, index);
     }
 
     public insertSubviewBelow(subview: View, target: View) {
-        return notImplemented();
+        const index = this._subviews.indexOf(target);
+        assert(index >= 0);
+        this.insertSubviewAt(subview, index + 1);
     }
 
     public addClassName(name: string) {
