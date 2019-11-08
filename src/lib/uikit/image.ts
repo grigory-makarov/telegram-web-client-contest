@@ -14,11 +14,20 @@
  * limitations under the License.
  */
 
-export * from './tag-name';
-export * from './view';
-export * from './button/button';
-export * from './icon/icon';
-export * from './text-field/text-field';
-export * from './search-field/search-field';
-export * from './checkbox/checkbox';
-export * from './image';
+import {View} from "./view";
+import {TagName} from "./tag-name";
+
+export class Image extends View<HTMLImageElement> {
+    public get url(): string {
+        return this.element.src;
+    }
+
+    public set url(value: string) {
+        this.element.src = value;
+    }
+
+    constructor(url: string) {
+        super(TagName.img);
+        this.url = url;
+    }
+}
