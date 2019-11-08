@@ -1,4 +1,4 @@
-/*
+/*!
  * Copyright 2019 Grigory Makarov <makkgregory@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,10 +14,28 @@
  * limitations under the License.
  */
 
-export * from './tag-name';
-export * from './view';
-export * from './button/button';
-export * from './icon/icon';
-export * from './text-field/text-field';
-export * from './search-field/search-field';
-export * from './checkbox/checkbox';
+.checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(0,0,0,.32);
+  box-sizing: border-box;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &.checked {
+    border: none;
+    background-color: #4ea4f6;
+  }
+}
+
+
+.checkMark {
+  display: none;
+  path {
+    fill: #ffffff;
+  }
+}
+
+.checked .checkMark {
+  display: block;
+}
