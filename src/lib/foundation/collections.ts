@@ -311,7 +311,7 @@ export class List<TElement> {
         return instance;
     }
 
-    public insertAt(index: number, element: TElement) {
+    public insertAt(element: TElement, index: number) {
         assert((this.isEmpty && index === 0)
             || this.indices.shiftingEnd(1).contains(index), 'Index out of bounds');
 
