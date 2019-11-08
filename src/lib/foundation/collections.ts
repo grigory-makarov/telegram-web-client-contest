@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import { Range } from './range';
-import { assert, assertNotNil, fatal, Type } from './utils';
+import {Range} from './range';
+import {assert, assertNotNil, fatal, Type} from './utils';
 
 export class List<TElement> {
     public get lastIndex(): number {
@@ -413,7 +413,7 @@ export class Dictionary<TKey, TValue> {
 
     public get entries(): List<{ key: TKey, value: TValue }> {
         const entries = List.empty<{ key: TKey, value: TValue }>();
-        this.map.forEach((value, key) => entries.append({ key, value }));
+        this.map.forEach((value, key) => entries.append({key, value}));
         return entries;
     }
 
