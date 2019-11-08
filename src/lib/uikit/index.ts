@@ -19,3 +19,4 @@ export * from './view';
 export * from './button/button';
 export * from './icon/icon';
 export * from './text-field/text-field';
+export * from './search-field/search-field';
