@@ -26,7 +26,7 @@ export enum ButtonType {
     mixedButton
 }
 
-export class Button extends View {
+export class Button extends View<HTMLButtonElement> {
     private readonly style = require('./button.scss');
     private readonly tapStream = new Subject();
     public readonly tap$ = this.tapStream.asObservable();

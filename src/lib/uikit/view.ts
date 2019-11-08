@@ -17,10 +17,10 @@
 import {TagName} from "./tag-name";
 import {assert, List} from "@telegram/foundation";
 
-export class View {
+export class View<TElement extends HTMLElement = HTMLElement> {
     private _superview: View | null = null;
     private readonly _subviews = List.empty<View>();
-    public readonly element: HTMLElement;
+    public readonly element: TElement;
 
     public get superview(): View | null {
         return this._superview;
@@ -31,7 +31,7 @@ export class View {
     }
 
     constructor(private readonly tagName: TagName = TagName.div) {
-        this.element = document.createElement(tagName);
+        this.element = document.createElement(tagName) as TElement;
         this.element.dataset['class'] = this.constructor.name;
     }
 
