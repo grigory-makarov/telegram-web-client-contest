@@ -22,3 +22,4 @@ export * from './text-field/text-field';
 export * from './search-field/search-field';
 export * from './checkbox/checkbox';
 export * from './image';
+export * from './view-controller';
