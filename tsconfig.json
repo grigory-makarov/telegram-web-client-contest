@@ -28,6 +28,9 @@
       ],
       "@telegram/uikit": [
         "lib/uikit/index.ts"
+      ],
+      "@telegram/auth": [
+        "lib/auth/index.ts"
       ]
     },
     "plugins": [

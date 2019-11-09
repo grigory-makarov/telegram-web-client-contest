@@ -14,8 +14,5 @@
  * limitations under the License.
  */
 
-import './global.scss';
-import {SignInViewController} from "@telegram/auth";
-
-const controller = new SignInViewController();
-document.body.append(controller.signInView.element);
+export * from './sign-in/sign-in-view';
+export * from './sign-in/sign-in-view-controller';
