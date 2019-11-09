@@ -31,6 +31,7 @@ module.exports = (env, argv) => {
 
     return {
         mode: isProduction ? 'production' : 'development',
+        devtool: isDevelopment ? 'inline-source-map' : '',
         entry: path.resolve(srcPath, 'main.ts'),
         output: {
             path: buildPath,
@@ -79,7 +80,6 @@ module.exports = (env, argv) => {
                     test: /\.svg$/,
                     loader: 'svg-inline-loader'
                 }
-
             ]
         },
         devServer: {
