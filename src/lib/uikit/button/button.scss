@@ -21,9 +21,10 @@
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  padding: 12px;
-  border-radius: 12px;
+  padding: 0 1rem;
+  border-radius: 10px;
   box-sizing: border-box;
+  height: 3.25rem;
 
   &.noTextButton {
     border-radius: 50%;
@@ -78,7 +79,7 @@
 .icon {
   width: 20px;
   height: 20px;
-  margin-right: 18px;
+  margin-right: 1.25em;
 }
 
 .noTextButton .icon {
