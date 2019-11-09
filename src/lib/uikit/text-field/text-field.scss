@@ -15,15 +15,14 @@
  */
 
 .textField {
-  width: 280px;
-  height: 54px;
-  border: 1px solid rgba(0, 0, 0, .24);
-  border-radius: 12px;
+  width: 22.5rem;
+  height: 3.25rem;
+  border: 1px solid rgba(0, 0, 0, .12);
+  border-radius: .625rem;
   box-sizing: border-box;
   cursor: text;
   position: relative;
-  margin-top: 7px;
-  margin-bottom: 24px;
+  margin-bottom: 1.5rem;
 
   &:hover {
     border-color: #000000;
@@ -46,15 +45,15 @@
   border: none;
   background-color: transparent;
   outline: none;
-  padding: 0 12px;
+  padding: 0 1rem;
 }
 
 .label {
   position: absolute;
   top: 50%;
-  left: 12px;
-  margin-top: -7px;
-  color: rgba(0, 0, 0, .24);
+  left: 1rem;
+  margin-top: -.5rem;
+  color: rgba(0, 0, 0, .42);
   transition: font-size 160ms ease-in-out, top 160ms ease-in-out;
 
   &.floating {
