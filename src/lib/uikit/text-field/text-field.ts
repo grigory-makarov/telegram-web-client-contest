@@ -78,7 +78,7 @@ export class TextField extends View {
 
         this.label = "Text Field";
         this.addClassName(style.textField);
-
+        this.element.onclick = () => this.inputView.element.focus();
         this.setupFocusStateListeners();
         this.setupValueListeners();
     }
