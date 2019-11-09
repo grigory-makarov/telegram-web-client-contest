@@ -20,6 +20,8 @@ import {TagName} from "../tag-name";
 import {Subject} from "rxjs";
 import {fatal} from "@telegram/foundation";
 
+const style = require('./button.scss');
+
 export enum ButtonType {
     pushButton,
     textButton,
@@ -27,7 +29,6 @@ export enum ButtonType {
 }
 
 export class Button extends View<HTMLButtonElement> {
-    private readonly style = require('./button.scss');
     private readonly tapStream = new Subject();
     public readonly tap$ = this.tapStream.asObservable();
 
@@ -46,13 +47,13 @@ export class Button extends View<HTMLButtonElement> {
 
         switch (value) {
             case ButtonType.pushButton:
-                this.currentClassName = this.style.pushButton;
+                this.currentClassName = style.pushButton;
                 break;
             case ButtonType.textButton:
-                this.currentClassName = this.style.textButton;
+                this.currentClassName = style.textButton;
                 break;
             case ButtonType.mixedButton:
-                this.currentClassName = this.style.mixedButton;
+                this.currentClassName = style.mixedButton;
                 break;
             default:
                 fatal('Unknown button type!')
@@ -74,14 +75,14 @@ export class Button extends View<HTMLButtonElement> {
     public set icon(value: Icon | null) {
         if (this._icon) {
             this._icon.removeFromSuperview();
-            this._icon.removeClassName(this.style.icon);
+            this._icon.removeClassName(style.icon);
         }
 
         this._icon = value;
 
         if (value) {
             this.insertSubviewAbove(value, this.textView);
-            value.addClassName(this.style.icon);
+            value.addClassName(style.icon);
         }
 
         this.viewDidUpdate();
@@ -92,7 +93,7 @@ export class Button extends View<HTMLButtonElement> {
     // region Setting text content of the button
     private readonly textView: View = (() => {
         const textView = new View(TagName.span);
-        textView.addClassName(this.style.text);
+        textView.addClassName(style.text);
         this.addSubview(textView);
         return textView;
     })();
@@ -113,15 +114,15 @@ export class Button extends View<HTMLButtonElement> {
 
         this.type = ButtonType.textButton;
         this.text = "Button";
-        this.addClassName(this.style.button);
+        this.addClassName(style.button);
         this.element.onclick = () => this.tapStream.next();
     }
 
     private viewDidUpdate() {
         if (!this.text) {
-            this.addClassName(this.style.noTextButton);
+            this.addClassName(style.noTextButton);
         } else {
-            this.removeClassName(this.style.noTextButton);
+            this.removeClassName(style.noTextButton);
         }
     }
 }

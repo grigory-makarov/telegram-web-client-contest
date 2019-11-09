@@ -17,12 +17,13 @@
 import {View} from "../view";
 import {TagName} from "../tag-name";
 
+const style = require('./icon.scss');
+
 export class Icon extends View {
-    private readonly style = require('./icon.scss');
 
     constructor(content: string) {
         super(TagName.figure);
         this.element.innerHTML = content;
-        this.addClassName(this.style.icon);
+        this.addClassName(style.icon);
     }
 }

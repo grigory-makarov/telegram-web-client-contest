@@ -18,13 +18,14 @@ import {Icon, View} from "@telegram/uikit";
 import {Subject} from "rxjs";
 import {distinctUntilChanged} from "rxjs/operators";
 
+const style = require('./checkbox.scss');
+
 export enum CheckboxState {
     checked,
     unchecked
 }
 
 export class Checkbox extends View {
-    private readonly style = require('./checkbox.scss');
 
     private readonly stateStream = new Subject<CheckboxState>();
     public readonly state$ = this.stateStream.pipe(
@@ -44,14 +45,14 @@ export class Checkbox extends View {
 
     private readonly checkMark: Icon = (() => {
         const icon = new Icon(require('assets/icons/1check_svg.svg'));
-        icon.addClassName(this.style.checkMark);
+        icon.addClassName(style.checkMark);
         this.addSubview(icon);
         return icon;
     })();
 
     constructor() {
         super();
-        this.addClassName(this.style.checkbox);
+        this.addClassName(style.checkbox);
         this.setupStateListener();
     }
 
@@ -64,9 +65,9 @@ export class Checkbox extends View {
         this.element.onclick = () => this.toggle();
         this.state$.subscribe(state => {
             if (state === CheckboxState.unchecked && state !== this.state) {
-                this.removeClassName(this.style.checked);
+                this.removeClassName(style.checked);
             } else if (state === CheckboxState.checked && state !== this.state) {
-                this.addClassName(this.style.checked);
+                this.addClassName(style.checked);
             }
         })
     }

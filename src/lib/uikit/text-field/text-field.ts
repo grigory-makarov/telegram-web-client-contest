@@ -19,6 +19,8 @@ import {TagName} from "@telegram/uikit";
 import {Subject} from "rxjs";
 import {distinctUntilChanged} from "rxjs/operators";
 
+const style = require("./text-field.scss");
+
 export enum ContentType {
     text = "text",
     email = "email",
@@ -32,8 +34,6 @@ export enum FocusState {
 }
 
 export class TextField extends View {
-    private readonly style = require("./text-field.scss");
-
     private readonly valueStream = new Subject<string>();
     public readonly value$ = this.valueStream.pipe(
         distinctUntilChanged()
@@ -45,7 +45,7 @@ export class TextField extends View {
 
     private readonly inputView: View<HTMLInputElement> = (() => {
         const view = new View<HTMLInputElement>(TagName.input);
-        view.addClassName(this.style.input);
+        view.addClassName(style.input);
         this.addSubview(view);
         return view;
     })();
@@ -60,7 +60,7 @@ export class TextField extends View {
 
     private readonly labelView: View = (() => {
         const view = new View(TagName.span);
-        view.addClassName(this.style.label);
+        view.addClassName(style.label);
         this.addSubview(view);
         return view;
     })();
@@ -77,7 +77,7 @@ export class TextField extends View {
         super();
 
         this.label = "Text Field";
-        this.addClassName(this.style.textField);
+        this.addClassName(style.textField);
 
         this.setupFocusStateListeners();
         this.setupValueListeners();
@@ -90,10 +90,10 @@ export class TextField extends View {
         this.value$.subscribe(value => {
 
             if (value && !hasFloatingClassName) {
-                this.labelView.addClassName(this.style.floating);
+                this.labelView.addClassName(style.floating);
                 hasFloatingClassName = true;
             } else if (!value && hasFloatingClassName) {
-                this.labelView.removeClassName(this.style.floating);
+                this.labelView.removeClassName(style.floating);
                 hasFloatingClassName = false;
             }
         });
@@ -105,9 +105,9 @@ export class TextField extends View {
 
         this.focusState$.subscribe(state => {
             if (state === FocusState.focused) {
-                this.addClassName(this.style.focused);
+                this.addClassName(style.focused);
             } else {
-                this.removeClassName(this.style.focused);
+                this.removeClassName(style.focused);
             }
         });
     }

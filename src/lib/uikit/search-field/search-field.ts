@@ -18,9 +18,9 @@ import {Icon, TagName} from "@telegram/uikit";
 import {Subject} from "rxjs";
 import {distinctUntilChanged} from "rxjs/operators";
 
+const style = require('./search-field.scss');
 
 export class SearchField extends View {
-    private readonly style = require('./search-field.scss');
 
     private readonly queryStream = new Subject<string>();
 
@@ -34,7 +34,7 @@ export class SearchField extends View {
 
     private readonly iconView: Icon = (() => {
         const view = new Icon(require('assets/icons/search_svg.svg'));
-        view.addClassName(this.style.icon);
+        view.addClassName(style.icon);
         this.addSubview(view);
         return view;
     })();
@@ -42,14 +42,14 @@ export class SearchField extends View {
     private readonly inputView: View<HTMLInputElement> = (() => {
         const view = new View<HTMLInputElement>(TagName.input);
         view.element.type = 'search';
-        view.addClassName(this.style.input);
+        view.addClassName(style.input);
         this.addSubview(view);
         return view;
     })();
 
     private readonly labelView: View = (() => {
         const view = new View(TagName.span);
-        view.addClassName(this.style.label);
+        view.addClassName(style.label);
         this.addSubview(view);
         return view;
     })();
@@ -65,7 +65,7 @@ export class SearchField extends View {
     constructor() {
         super();
         this.label = "Search";
-        this.addClassName(this.style.searchField);
+        this.addClassName(style.searchField);
         this.setupQueryListener();
     }
 
@@ -76,10 +76,10 @@ export class SearchField extends View {
 
         this.query$.subscribe(query => {
             if (query && !labelHidden) {
-                this.labelView.addClassName(this.style.hidden);
+                this.labelView.addClassName(style.hidden);
                 labelHidden = true;
             } else if (!query && labelHidden) {
-                this.labelView.removeClassName(this.style.hidden);
+                this.labelView.removeClassName(style.hidden);
                 labelHidden = false;
             }
         })
