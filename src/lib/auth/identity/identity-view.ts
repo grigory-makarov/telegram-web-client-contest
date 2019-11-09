@@ -26,40 +26,36 @@ import {
     View
 } from "@telegram/uikit";
 
-const style = require('./sign-in.scss');
+const style = require('./identity.scss');
 
-export class SignInView extends View {
+export class IdentityView extends View {
     public readonly countryField: TextField;
     public readonly phoneNumberField: TextField;
     public readonly keepSignedInCheckbox: Checkbox;
-    public readonly signInButton: Button;
+    public readonly nextButton: Button;
 
     constructor() {
         super();
 
         this.addClassName(style.signIn);
 
-        const container = new View();
-        container.addClassName(style.container);
-        this.addSubview(container);
-
         const logo = new Image("assets/images/logo.png");
         logo.addClassName(style.logo);
-        container.addSubview(logo);
+        this.addSubview(logo);
 
         const heading = new View(TagName.h1);
         heading.element.innerText = "Sign in to Telegram";
         heading.addClassName(style.heading);
-        container.addSubview(heading);
+        this.addSubview(heading);
 
         const message = new View(TagName.p);
         message.element.innerText = "Please confirm your country and enter your phone number.";
         message.addClassName(style.message);
-        container.addSubview(message);
+        this.addSubview(message);
 
         const fieldsContainer = new View();
         fieldsContainer.addClassName(style.fieldsContainer);
-        container.addSubview(fieldsContainer);
+        this.addSubview(fieldsContainer);
 
         this.countryField = new TextField();
         this.countryField.label = "Country";
@@ -86,10 +82,10 @@ export class SignInView extends View {
         checkboxLabel.addClassName(style.checkboxLabel);
         checkboxContainer.addSubview(checkboxLabel);
 
-        this.signInButton = new Button();
-        this.signInButton.type = ButtonType.pushButton;
-        this.signInButton.text = "Next";
-        this.signInButton.addClassName(style.button);
-        fieldsContainer.addSubview(this.signInButton);
+        this.nextButton = new Button();
+        this.nextButton.type = ButtonType.pushButton;
+        this.nextButton.text = "Next";
+        this.nextButton.addClassName(style.button);
+        fieldsContainer.addSubview(this.nextButton);
     }
 }

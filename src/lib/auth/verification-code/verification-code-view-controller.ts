@@ -14,4 +14,15 @@
  * limitations under the License.
  */
 
-export * from './auth-view-controller';
+import {ViewController} from "@telegram/uikit";
+import {VerificationCodeView} from "./verification-code-view";
+
+export class VerificationCodeViewController extends ViewController {
+    public readonly hostView = new VerificationCodeView();
+    public readonly editPhoneNumber$ = this.hostView.editPhoneNumberButton.tap$;
+
+    constructor() {
+        super();
+        this.hostView.phoneNumber = "+31 12 34 56 789";
+    }
+}

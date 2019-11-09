@@ -14,4 +14,10 @@
  * limitations under the License.
  */
 
-export * from './auth-view-controller';
+import {IdentityView} from "./identity-view";
+import {ViewController} from "@telegram/uikit";
+
+export class IdentityViewController extends ViewController {
+    public readonly hostView = new IdentityView();
+    public readonly done$ = this.hostView.nextButton.tap$;
+}

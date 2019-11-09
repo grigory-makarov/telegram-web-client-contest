@@ -1,4 +1,4 @@
-/*
+/*!
  * Copyright 2019 Grigory Makarov <makkgregory@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-import {SignInView} from "./sign-in-view";
-
-export class SignInViewController {
-    public readonly signInView = new SignInView();
+.auth {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
