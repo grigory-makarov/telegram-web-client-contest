@@ -52,13 +52,14 @@
   position: absolute;
   top: 50%;
   left: 1rem;
-  margin-top: -.5rem;
+  margin-top: -.45rem;
   color: rgba(0, 0, 0, .42);
   transition: font-size 160ms ease-in-out, top 160ms ease-in-out;
 
   &.floating {
     top: 0;
     font-size: 11px;
+    margin-top: -.4rem;
     font-weight: 500;
   }
 }
