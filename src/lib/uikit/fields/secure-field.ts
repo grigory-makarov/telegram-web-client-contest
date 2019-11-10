@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-export * from './tag-name';
-export * from './view';
-export * from './button/button';
-export * from './icon/icon';
-export * from './fields/text-field';
-export * from './fields/secure-field';
-export * from './search-field/search-field';
-export * from './checkbox/checkbox';
-export * from './image';
-export * from './view-controller';
+import {KeyboardInputField} from "./keyboard-input-field";
+
+export class SecureField extends KeyboardInputField {
+    constructor() {
+        super();
+
+        this.label = "Secure Field";
+        this.inputView.element.type = "password";
+    }
+}
