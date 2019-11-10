@@ -14,19 +14,20 @@
  * limitations under the License.
  */
 
-import {Icon, View} from "@telegram/uikit";
+import {Icon, TagName, View} from "@telegram/uikit";
 import {Subject} from "rxjs";
 import {distinctUntilChanged} from "rxjs/operators";
+import {fatal} from "@telegram/foundation";
 
 const style = require('./checkbox.scss');
 
 export enum CheckboxState {
     checked,
-    unchecked
+    unchecked,
+    indeterminate
 }
 
 export class Checkbox extends View {
-
     private readonly stateStream = new Subject<CheckboxState>();
     public readonly state$ = this.stateStream.pipe(
         distinctUntilChanged()
@@ -43,32 +44,69 @@ export class Checkbox extends View {
         this._state = value;
     }
 
-    private readonly checkMark: Icon = (() => {
-        const icon = new Icon(require('assets/icons/1check_svg.svg'));
-        icon.addClassName(style.checkMark);
+    private readonly icon: Icon = (() => {
+        const icon = new Icon();
+        icon.addClassName(style.icon);
         this.addSubview(icon);
         return icon;
     })();
+
+    private readonly labelView: View = (() => {
+        const label = new View(TagName.span);
+        label.addClassName(style.label);
+        this.addSubview(label);
+        return label;
+    })();
+
+    public get label(): string {
+        return this.labelView.element.innerText;
+    }
+
+    public set label(value: string) {
+        this.labelView.element.innerText = value;
+    }
 
     constructor() {
         super();
         this.addClassName(style.checkbox);
         this.setupStateListener();
+        this.state = CheckboxState.unchecked;
     }
 
-
     public toggle() {
-        this.state = this.state === CheckboxState.unchecked ? CheckboxState.checked : CheckboxState.unchecked;
+        this.state = this.state === CheckboxState.checked ? CheckboxState.unchecked : CheckboxState.checked;
     }
 
     private setupStateListener() {
         this.element.onclick = () => this.toggle();
+
+        let stateClassName: string | null = null;
+
         this.state$.subscribe(state => {
-            if (state === CheckboxState.unchecked && state !== this.state) {
-                this.removeClassName(style.checked);
-            } else if (state === CheckboxState.checked && state !== this.state) {
-                this.addClassName(style.checked);
+            if (stateClassName) {
+                this.removeClassName(stateClassName);
             }
-        })
+
+            switch (state) {
+                case CheckboxState.unchecked:
+                    this.icon.setSvgContent(require('assets/icons/checkboxempty_svg.svg'));
+                    stateClassName = null;
+                    break;
+                case CheckboxState.checked:
+                    this.icon.setSvgContent(require('assets/icons/checkboxon_svg.svg'));
+                    stateClassName = style.indeterminate;
+                    break;
+                case CheckboxState.indeterminate:
+                    this.icon.setSvgContent(require('assets/icons/checkboxblock_svg.svg'));
+                    stateClassName = style.checked;
+                    break;
+                default:
+                    fatal('Unknown checkbox state')
+            }
+
+            if (stateClassName) {
+                this.addClassName(stateClassName);
+            }
+        });
     }
 }

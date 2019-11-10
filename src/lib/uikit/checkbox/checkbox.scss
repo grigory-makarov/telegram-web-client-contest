@@ -15,27 +15,28 @@
  */
 
 .checkbox {
-  width: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   height: 20px;
-  border: 2px solid rgba(0,0,0,.32);
-  box-sizing: border-box;
-  border-radius: 4px;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
   cursor: pointer;
 
-  &.checked {
-    border: none;
-    background-color: #4ea4f6;
-  }
-}
-
-
-.checkMark {
-  display: none;
   path {
-    fill: #ffffff;
+    fill: rgba(0,0,0,.32);
   }
 }
 
-.checked .checkMark {
-  display: block;
+.label {
+  font-weight: 500;
+  margin-left: 2em;
+}
+
+.checked .icon path,
+.indeterminate .icon path {
+  fill: #4ea4f6;
 }
