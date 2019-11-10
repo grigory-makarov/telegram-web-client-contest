@@ -59,7 +59,6 @@ export class IdentityView extends View {
 
         this.countryField = new TextField();
         this.countryField.label = "Country";
-        this.countryField.contentType = ContentType.text;
         this.countryField.addClassName(style.field);
         fieldsContainer.addSubview(this.countryField);
 
@@ -69,18 +68,11 @@ export class IdentityView extends View {
         this.phoneNumberField.addClassName(style.field);
         fieldsContainer.addSubview(this.phoneNumberField);
 
-        const checkboxContainer = new View();
-        checkboxContainer.addClassName(style.checkboxContainer);
-        fieldsContainer.addSubview(checkboxContainer);
-
         this.keepSignedInCheckbox = new Checkbox();
+        this.keepSignedInCheckbox.addClassName(style.checkbox);
         this.keepSignedInCheckbox.state = CheckboxState.checked;
-        checkboxContainer.addSubview(this.keepSignedInCheckbox);
-
-        const checkboxLabel = new View(TagName.span);
-        checkboxLabel.element.innerText = "Keep me signed in";
-        checkboxLabel.addClassName(style.checkboxLabel);
-        checkboxContainer.addSubview(checkboxLabel);
+        this.keepSignedInCheckbox.label = "Keep me signed in";
+        fieldsContainer.addSubview(this.keepSignedInCheckbox);
 
         this.nextButton = new Button();
         this.nextButton.type = ButtonType.pushButton;

@@ -15,69 +15,20 @@
  */
 
 import {View, ViewController} from "@telegram/uikit";
-import {fatal} from "@telegram/foundation";
-import {IdentityViewController} from "./identity/identity-view-controller";
 import {VerificationCodeViewController} from "./verification-code/verification-code-view-controller";
-import {first, map} from "rxjs/operators";
 
 const style = require('./auth.scss');
 
-export enum AuthState {
-    identity,
-    verificationCode
-}
-
 export class AuthViewController extends ViewController {
-    public readonly hostView = new View();
-    private currentViewController: ViewController | null = null;
-
-    constructor() {
-        super();
-        this.hostView.addClassName(style.auth);
-        this.navigateToState(AuthState.identity);
+    public createView(): View {
+        const view = new View();
+        view.addClassName(style.auth);
+        return view;
     }
 
-    public navigateToState(state: AuthState) {
-        if (this.currentViewController) {
-            this.currentViewController.removeFromParent();
-        }
+    public viewWillAppear() {
+        super.viewWillAppear();
 
-        switch (state) {
-            case AuthState.identity:
-                this.currentViewController = this.createIdentityViewController();
-                break;
-            case AuthState.verificationCode:
-                this.currentViewController = this.createVerificationCodeViewController();
-                break;
-            default:
-                fatal("Unknown auth state")
-
-        }
-
-        this.addChild(this.currentViewController!);
-    }
-
-    private createIdentityViewController(): IdentityViewController {
-        const controller = new IdentityViewController();
-        controller.done$.pipe(
-            map(() => this.navigateToState(AuthState.verificationCode)),
-            first()
-        ).subscribe();
-
-        return controller;
-    }
-
-    private createVerificationCodeViewController(): VerificationCodeViewController {
-        const controller = new VerificationCodeViewController();
-        controller.editPhoneNumber$.pipe(
-            map(() => this.navigateToState(AuthState.identity)),
-            first()
-        ).subscribe();
-
-        return controller;
-    }
-
-    public embedIn(element: HTMLElement) {
-        element.append(this.hostView.element);
+        this.present(new VerificationCodeViewController());
     }
 }

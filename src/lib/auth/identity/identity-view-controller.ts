@@ -17,7 +17,8 @@
 import {IdentityView} from "./identity-view";
 import {ViewController} from "@telegram/uikit";
 
-export class IdentityViewController extends ViewController {
-    public readonly hostView = new IdentityView();
-    public readonly done$ = this.hostView.nextButton.tap$;
+export class IdentityViewController extends ViewController<IdentityView> {
+    public createView(): IdentityView {
+        return new IdentityView();
+    }
 }

@@ -17,12 +17,10 @@
 import {ViewController} from "@telegram/uikit";
 import {VerificationCodeView} from "./verification-code-view";
 
-export class VerificationCodeViewController extends ViewController {
-    public readonly hostView = new VerificationCodeView();
-    public readonly editPhoneNumber$ = this.hostView.editPhoneNumberButton.tap$;
-
-    constructor() {
-        super();
-        this.hostView.phoneNumber = "+31 12 34 56 789";
+export class VerificationCodeViewController extends ViewController<VerificationCodeView> {
+    public createView(): VerificationCodeView {
+        const view = new VerificationCodeView();
+        view.phoneNumber = "+31 12 34 56 789";
+        return view;
     }
 }

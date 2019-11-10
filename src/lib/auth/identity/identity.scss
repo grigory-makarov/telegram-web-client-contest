@@ -41,7 +41,7 @@
 .message {
   max-width: 240px;
   font-weight: 500;
-  color: rgba(0,0,0,.42);
+  color: rgba(0, 0, 0, .42);
   text-align: center;
   line-height: 1.36em;
   margin-top: 1em;
@@ -57,16 +57,8 @@
   width: 100%;
 }
 
-.checkboxContainer {
-  display: flex;
-  align-items: center;
+.checkbox {
   padding: 0 1rem;
-  box-sizing: border-box;
-}
-
-.checkboxLabel {
-  font-weight: 500;
-  margin-left: 2rem;
 }
 
 .button {
