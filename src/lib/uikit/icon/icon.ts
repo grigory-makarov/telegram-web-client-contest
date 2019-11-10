@@ -34,6 +34,6 @@ export class Icon extends View {
     constructor(content: string | null = null) {
         super(TagName.figure);
         this.addClassName(style.icon);
-        this._svgContent = content;
+        this.svgContent = content;
     }
 }
