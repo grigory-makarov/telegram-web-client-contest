@@ -14,49 +14,26 @@
  * limitations under the License.
  */
 
-import {View} from '../view';
-import {TagName} from "@telegram/uikit";
-import {Subject} from "rxjs";
+import {TagName, View} from "@telegram/uikit";
+import {Observable, Subject} from "rxjs";
 import {distinctUntilChanged} from "rxjs/operators";
 
-const style = require("./text-field.scss");
-
-export enum ContentType {
-    text = "text",
-    email = "email",
-    phoneNumber = "tel",
-    number = "number"
-}
+const style = require('./field.scss');
 
 export enum FocusState {
     focused,
     blurred
 }
 
-export class TextField extends View {
-    private readonly valueStream = new Subject<string>();
-    public readonly value$ = this.valueStream.pipe(
+export abstract class Field<TValue> extends View {
+    protected readonly focusStateSubject = new Subject<FocusState>();
+
+    public readonly focusState$ = this.focusStateSubject.pipe(
         distinctUntilChanged()
     );
 
-    private readonly focusStateStream = new Subject<FocusState>();
-    public readonly focusState$ = this.focusStateStream.asObservable();
-
-
-    private readonly inputView: View<HTMLInputElement> = (() => {
-        const view = new View<HTMLInputElement>(TagName.input);
-        view.addClassName(style.input);
-        this.addSubview(view);
-        return view;
-    })();
-
-    public get contentType(): ContentType {
-        return this.inputView.element.type as ContentType;
-    }
-
-    public set contentType(value: ContentType) {
-        this.inputView.element.type = value;
-    }
+    public abstract value$: Observable<TValue>;
+    public abstract value: TValue;
 
     private readonly labelView: View = (() => {
         const view = new View(TagName.span);
@@ -76,19 +53,19 @@ export class TextField extends View {
     constructor() {
         super();
 
-        this.label = "Text Field";
-        this.addClassName(style.textField);
-        this.element.onclick = () => this.inputView.element.focus();
-        this.setupFocusStateListeners();
-        this.setupValueListeners();
+        this.addClassName(style.field);
+        this.label = "Field";
+
+        setTimeout(() => {
+            this.listenFloatingLabelChanges();
+            this.listenFocusStateChanges();
+        }, 0);
     }
 
-    private setupValueListeners() {
-        this.inputView.element.oninput = () => this.valueStream.next(this.inputView.element.value);
-
+    private listenFloatingLabelChanges() {
         let hasFloatingClassName = false;
-        this.value$.subscribe(value => {
 
+        this.value$.subscribe(value => {
             if (value && !hasFloatingClassName) {
                 this.labelView.addClassName(style.floating);
                 hasFloatingClassName = true;
@@ -96,13 +73,10 @@ export class TextField extends View {
                 this.labelView.removeClassName(style.floating);
                 hasFloatingClassName = false;
             }
-        });
+        })
     }
 
-    private setupFocusStateListeners() {
-        this.inputView.element.onfocus = () => this.focusStateStream.next(FocusState.focused);
-        this.inputView.element.onblur = () => this.focusStateStream.next(FocusState.blurred);
-
+    private listenFocusStateChanges() {
         this.focusState$.subscribe(state => {
             if (state === FocusState.focused) {
                 this.addClassName(style.focused);

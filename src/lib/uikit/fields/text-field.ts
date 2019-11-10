@@ -14,12 +14,27 @@
  * limitations under the License.
  */
 
-export * from './tag-name';
-export * from './view';
-export * from './button/button';
-export * from './icon/icon';
-export * from './fields/text-field';
-export * from './search-field/search-field';
-export * from './checkbox/checkbox';
-export * from './image';
-export * from './view-controller';
+import {KeyboardInputField} from "./keyboard-input-field";
+
+export enum ContentType {
+    text = "text",
+    email = "email",
+    phoneNumber = "tel",
+    number = "number"
+}
+
+export class TextField extends KeyboardInputField {
+    public get contentType(): ContentType {
+        return this.inputView.element.type as ContentType;
+    }
+
+    public set contentType(value: ContentType) {
+        this.inputView.element.type = value;
+    }
+
+    constructor() {
+        super();
+
+        this.label = "Text Field";
+    }
+}
