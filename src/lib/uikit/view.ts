@@ -16,6 +16,7 @@
 
 import {TagName} from "./tag-name";
 import {assert, List} from "@telegram/foundation";
+import {environment} from "../../environments/environment";
 
 export class View<TElement extends HTMLElement = HTMLElement> {
     private _superview: View | null = null;
@@ -32,7 +33,10 @@ export class View<TElement extends HTMLElement = HTMLElement> {
 
     constructor(private readonly tagName: TagName = TagName.div) {
         this.element = document.createElement(tagName) as TElement;
-        this.element.dataset['class'] = this.constructor.name;
+
+        if (!environment.production) {
+            this.element.dataset.view = this.constructor.name;
+        }
     }
 
     public addSubview(subview: View) {
