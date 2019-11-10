@@ -18,9 +18,9 @@ import {Icon, TagName} from "@telegram/uikit";
 import {Subject} from "rxjs";
 import {distinctUntilChanged} from "rxjs/operators";
 
-const style = require('./search-field.scss');
+const style = require('./search-box.scss');
 
-export class SearchField extends View {
+export class SearchBox extends View {
 
     private readonly queryStream = new Subject<string>();
 
