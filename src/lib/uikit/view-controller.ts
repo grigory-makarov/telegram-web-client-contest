@@ -16,34 +16,97 @@
 
 import {View} from "./view";
 import {assert, List} from "@telegram/foundation";
+import {ModalContainerView} from "./modal-container/modal-container-view";
+import {environment} from "../../environments/environment";
 
-export abstract class ViewController {
-    public abstract readonly hostView: View;
+export abstract class ViewController<TView extends View = View> {
+    private static readonly modalViewContainer: ModalContainerView = (() => {
+        const view = new ModalContainerView();
+        document.body.append(view.element);
+        return view;
+    })();
 
-    private _parent: ViewController | null = null;
+    // region Managing View Controller's View
+    private _view: TView | null = null;
 
-    public get parent(): ViewController | null {
-        return this._parent;
+    public get view(): TView {
+        return this._view!;
     }
 
-    private _children = List.empty<ViewController>();
-
-    public get children(): List<ViewController> {
-        return this._children.copy();
+    public get isViewCreated(): boolean {
+        return this._view !== null;
     }
 
-    public addChild(controller: ViewController) {
-        assert(controller._parent === null);
-        this._children.append(controller);
-        this.hostView.addSubview(controller.hostView);
-        controller._parent = this;
-    }
+    public abstract createView(): TView;
 
-    public removeFromParent() {
-        if (this._parent) {
-            this.hostView.removeFromSuperview();
-            this._parent._children.remove(this);
-            this._parent = null;
+    public createViewIfNeeded() {
+        if (!this.isViewCreated) {
+            this._view = this.createView();
         }
     }
+
+    // endregion
+
+    public viewWillAppear() {
+        if (!environment.production) {
+            this.view.element.dataset.viewController = this.constructor.name;
+        }
+    }
+
+    public viewDidAppear() {
+    }
+
+    public viewWillDisappear() {
+    }
+
+    public viewDidDisappear() {
+    }
+
+    // region Presenting And Dismissing Child View Controllers
+    private _presentingViewController: ViewController | null = null;
+
+    public get presentingViewController(): ViewController | null {
+        return this._presentingViewController;
+    }
+
+    private readonly _presentedViewControllers = List.empty<ViewController>();
+
+    public get presentedViewControllers(): List<ViewController> {
+        return this._presentedViewControllers.copy();
+    }
+
+    public present(controller: ViewController) {
+        this.prepareToPresent(controller);
+        this.view.addSubview(controller.view);
+        controller.viewDidAppear();
+    }
+
+    public presentModal(controller: ViewController) {
+        this.prepareToPresent(controller);
+        ViewController.modalViewContainer.addSubview(controller.view);
+        controller.viewDidAppear();
+    }
+
+    private prepareToPresent(controller: ViewController) {
+        assert(controller._presentingViewController === null);
+        controller._presentingViewController = this;
+        this._presentedViewControllers.append(controller);
+        controller.createViewIfNeeded();
+        controller.viewWillAppear();
+    }
+
+    public dismiss() {
+        if (this._presentingViewController) {
+            for (const controller of this._presentedViewControllers) {
+                controller.dismiss();
+            }
+
+            this.viewWillDisappear();
+            this._presentingViewController = null;
+            this.view.removeFromSuperview();
+            this.viewDidDisappear();
+        }
+    }
+
+    // endregion
 }
