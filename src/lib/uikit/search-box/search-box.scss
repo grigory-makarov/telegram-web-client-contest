@@ -19,11 +19,11 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
-  background-color: rgba(112, 117, 121, .08);
-  padding: 0 12px;
-  width: 280px;
-  height: 42px;
-  border-radius: 22px;
+  background-color: rgba(0,0,0,.04);
+  padding: 0 .75rem;
+  width: 22.5rem;
+  height: 2.75rem;
+  border-radius: 1.375rem;
   cursor: text;
 }
 
@@ -32,7 +32,7 @@
   box-sizing: border-box;
   border: none;
   background-color: transparent;
-  width: calc(100% - 28px);
+  width: calc(100% - 2rem);
   height: 100%;
   outline: none;
 }
@@ -40,20 +40,21 @@
 .label {
   position: absolute;
   top: 50%;
-  margin-top: -7px;
-  left: #{12px + 28px};
+  margin-top: -.45rem;
+  left: 2.75rem;
   color: rgba(0,0,0,.54);
-  transition: color 240ms ease;
+  transition: color 240ms ease-in-out, transform 240ms ease-in-out;
 
   &.hidden {
     color: transparent;
+    transform: translateX(50%);
   }
 }
 
 .icon {
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: .5rem;
 
   path {
     fill: rgba(0,0,0,.32);
