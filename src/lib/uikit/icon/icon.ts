@@ -20,10 +20,20 @@ import {TagName} from "../tag-name";
 const style = require('./icon.scss');
 
 export class Icon extends View {
+    private _svgContent: string | null = null;
 
-    constructor(content: string) {
+    public get svgContent(): string | null {
+        return this._svgContent;
+    }
+
+    public set svgContent(value: string | null) {
+        this._svgContent = value;
+        this.element.innerHTML = value || "";
+    }
+
+    constructor(content: string | null = null) {
         super(TagName.figure);
-        this.element.innerHTML = content;
         this.addClassName(style.icon);
+        this._svgContent = content;
     }
 }
