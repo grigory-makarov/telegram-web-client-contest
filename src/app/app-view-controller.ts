@@ -14,8 +14,24 @@
  * limitations under the License.
  */
 
-import './global.scss';
-import {AppViewController} from "./app/app-view-controller";
+import {View, ViewController} from "@telegram/uikit";
 
-const controller = new AppViewController();
-controller.embedIn(document.body);
+export class AppViewController extends ViewController {
+    public createView(): View {
+        return new View();
+    }
+
+    public async viewWillAppear() {
+        super.viewWillAppear();
+
+        const {AuthViewController} = await import("@telegram/auth");
+        this.present(new AuthViewController());
+    }
+
+    public embedIn(element: HTMLElement) {
+        this.createViewIfNeeded();
+        this.viewWillAppear();
+        element.append(this.view.element);
+        this.viewDidAppear();
+    }
+}
