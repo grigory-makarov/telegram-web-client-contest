@@ -48,12 +48,14 @@ export abstract class ViewController<TView extends View = View> {
 
     // endregion
 
-    public viewDidLoad() { }
-
-    public viewWillAppear() {
+    public viewDidLoad() {
         if (!environment.production) {
             this.view.element.dataset.viewController = this.constructor.name;
         }
+    }
+
+    public viewWillAppear() {
+
     }
 
     public viewDidAppear() {
