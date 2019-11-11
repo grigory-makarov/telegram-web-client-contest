@@ -1,4 +1,4 @@
-/*
+/*!
  * Copyright 2019 Grigory Makarov <makkgregory@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,18 +14,14 @@
  * limitations under the License.
  */
 
-import {ContainerView, SplitView, View} from "@telegram/uikit";
+.splitView {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
 
-const style = require('./messenger.scss');
-
-export class MessengerView extends ContainerView {
-    constructor() {
-        super();
-        this.addClassName(style.messengerView);
-
-        const splitView = new SplitView(new View(), new View());
-        splitView.masterView.addClassName(style.redView);
-        splitView.detailsView.addClassName(style.blueView);
-        this.addSubview(splitView);
-    }
+.masterView,
+.detailsView {
+  width: 50%;
+  height: 100%;
 }

@@ -24,4 +24,5 @@ export * from './search-box/search-box';
 export * from './checkbox/checkbox';
 export * from './image';
 export * from './view-controller';
+export * from './split-view/split-view';
 export * from './container/container-view';
