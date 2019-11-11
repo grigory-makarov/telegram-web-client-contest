@@ -17,7 +17,7 @@
 import {View} from "../view";
 import {Icon} from "../icon/icon";
 import {TagName} from "../tag-name";
-import {Subject} from "rxjs";
+import {fromEvent, Subject} from "rxjs";
 import {fatal} from "@telegram/foundation";
 
 const style = require('./button.scss');
@@ -29,8 +29,7 @@ export enum ButtonType {
 }
 
 export class Button extends View<HTMLButtonElement> {
-    private readonly tapStream = new Subject();
-    public readonly tap$ = this.tapStream.asObservable();
+    public readonly tap$ = fromEvent(this.element, 'click');
 
     // region Managing button appearance
     private _type?: ButtonType;
@@ -115,7 +114,6 @@ export class Button extends View<HTMLButtonElement> {
         this.type = ButtonType.textButton;
         this.text = "Button";
         this.addClassName(style.button);
-        this.element.onclick = () => this.tapStream.next();
     }
 
     private viewDidUpdate() {
