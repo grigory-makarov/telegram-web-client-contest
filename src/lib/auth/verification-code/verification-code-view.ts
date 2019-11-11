@@ -23,14 +23,6 @@ export class VerificationCodeView extends View {
     public readonly phoneNumberView: View;
     public readonly editPhoneNumberButton: Button;
 
-    public get phoneNumber(): string {
-        return this.phoneNumberView.element.innerText;
-    }
-
-    public set phoneNumber(value: string) {
-        this.phoneNumberView.element.innerText = value;
-    }
-
     constructor() {
         super();
 
@@ -64,5 +56,13 @@ export class VerificationCodeView extends View {
         this.codeField.contentType = ContentType.number;
         this.codeField.addClassName(style.field);
         this.addSubview(this.codeField);
+    }
+
+    public get phoneNumber(): string {
+        return this.phoneNumberView.element.innerText;
+    }
+
+    public set phoneNumber(value: string) {
+        this.phoneNumberView.element.innerText = value;
     }
 }

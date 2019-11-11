@@ -18,6 +18,9 @@ import {Range} from './range';
 import {assert, assertNotNil, fatal, Type} from './utils';
 
 export class List<TElement> {
+    private constructor(private elements: TElement[]) {
+    }
+
     public get lastIndex(): number {
         return this.elements.length - 1;
     }
@@ -57,9 +60,6 @@ export class List<TElement> {
 
     public get sum(): number {
         return this.sumBy(element => element as any);
-    }
-
-    private constructor(private elements: TElement[]) {
     }
 
     public static from<T>(array: T[]): List<T> {
@@ -389,6 +389,9 @@ export class List<TElement> {
 }
 
 export class Dictionary<TKey, TValue> {
+    private constructor(private readonly map: Map<TKey, TValue>) {
+    }
+
     public get isEmpty(): boolean {
         return this.map.size === 0;
     }
@@ -413,9 +416,6 @@ export class Dictionary<TKey, TValue> {
 
     public get values(): List<TValue> {
         return List.from(Array.from(this.map.values()));
-    }
-
-    private constructor(private readonly map: Map<TKey, TValue>) {
     }
 
     public static from<K, V>(source: Map<K, V>): Dictionary<K, V> {

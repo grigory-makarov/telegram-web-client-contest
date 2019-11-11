@@ -18,15 +18,15 @@ import {ContainerView, View, ViewController} from "@telegram/uikit";
 import {MessengerViewController} from "@telegram/messenger";
 
 export class AppViewController extends ViewController {
+    private constructor() {
+        super();
+    }
+
     public static presentIn(element: HTMLElement) {
         const controller = new AppViewController();
         controller.viewWillAppear();
         element.append(controller.view.element);
         controller.viewDidAppear();
-    }
-
-    private constructor() {
-        super();
     }
 
     public createView(): View {

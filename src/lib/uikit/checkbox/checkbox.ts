@@ -32,6 +32,25 @@ export class Checkbox extends View {
     public readonly state$ = this.stateStream.pipe(
         distinctUntilChanged()
     );
+    private readonly icon: Icon = (() => {
+        const icon = new Icon();
+        icon.addClassName(style.icon);
+        this.addSubview(icon);
+        return icon;
+    })();
+    private readonly labelView: View = (() => {
+        const label = new View(TagName.span);
+        label.addClassName(style.label);
+        this.addSubview(label);
+        return label;
+    })();
+
+    constructor() {
+        super();
+        this.addClassName(style.checkbox);
+        this.setupStateListener();
+        this.state = CheckboxState.unchecked;
+    }
 
     private _state = CheckboxState.unchecked;
 
@@ -44,33 +63,12 @@ export class Checkbox extends View {
         this._state = value;
     }
 
-    private readonly icon: Icon = (() => {
-        const icon = new Icon();
-        icon.addClassName(style.icon);
-        this.addSubview(icon);
-        return icon;
-    })();
-
-    private readonly labelView: View = (() => {
-        const label = new View(TagName.span);
-        label.addClassName(style.label);
-        this.addSubview(label);
-        return label;
-    })();
-
     public get label(): string {
         return this.labelView.element.innerText;
     }
 
     public set label(value: string) {
         this.labelView.element.innerText = value;
-    }
-
-    constructor() {
-        super();
-        this.addClassName(style.checkbox);
-        this.setupStateListener();
-        this.state = CheckboxState.unchecked;
     }
 
     public toggle() {

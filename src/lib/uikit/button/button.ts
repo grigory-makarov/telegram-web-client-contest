@@ -17,7 +17,7 @@
 import {View} from "../view";
 import {Icon} from "../icon/icon";
 import {TagName} from "../tag-name";
-import {fromEvent, Subject} from "rxjs";
+import {fromEvent} from "rxjs";
 import {fatal} from "@telegram/foundation";
 
 const style = require('./button.scss');
@@ -30,10 +30,27 @@ export enum ButtonType {
 
 export class Button extends View<HTMLButtonElement> {
     public readonly tap$ = fromEvent(this.element, 'click');
+    private currentClassName?: string;
+    // region Setting text content of the button
+    private readonly textView: View = (() => {
+        const textView = new View(TagName.span);
+        textView.addClassName(style.text);
+        this.addSubview(textView);
+        return textView;
+    })();
+
+    constructor() {
+        super(TagName.button);
+
+        this.type = ButtonType.textButton;
+        this.text = "Button";
+        this.addClassName(style.button);
+    }
 
     // region Managing button appearance
     private _type?: ButtonType;
-    private currentClassName?: string;
+
+    // endregion
 
     public get type(): ButtonType {
         return this._type!;
@@ -62,10 +79,10 @@ export class Button extends View<HTMLButtonElement> {
         this.viewDidUpdate();
     }
 
-    // endregion
-
     // region Adding icon to the button
     private _icon: Icon | null = null;
+
+    // endregion
 
     public get icon(): Icon | null {
         return this._icon;
@@ -87,33 +104,15 @@ export class Button extends View<HTMLButtonElement> {
         this.viewDidUpdate();
     }
 
-    // endregion
-
-    // region Setting text content of the button
-    private readonly textView: View = (() => {
-        const textView = new View(TagName.span);
-        textView.addClassName(style.text);
-        this.addSubview(textView);
-        return textView;
-    })();
-
     public get text(): string | null {
         return this.textView.element.innerText || null;
     }
 
+    // endregion
+
     public set text(value: string | null) {
         this.textView.element.innerText = value || "";
         this.viewDidUpdate();
-    }
-
-    // endregion
-
-    constructor() {
-        super(TagName.button);
-
-        this.type = ButtonType.textButton;
-        this.text = "Button";
-        this.addClassName(style.button);
     }
 
     private viewDidUpdate() {

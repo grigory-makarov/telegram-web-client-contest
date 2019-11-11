@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {Button, ButtonType, ContentType, Image, SecureField, TagName, TextField, View} from "@telegram/uikit";
+import {Button, ButtonType, ContentType, TagName, TextField, View} from "@telegram/uikit";
 import {ProfilePhotoPicker} from "../common/profile-photo-picker/profile-photo-picker";
 
 const style = require('./sign-up.scss');

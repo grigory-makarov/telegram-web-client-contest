@@ -19,17 +19,8 @@ import {assert, List} from "@telegram/foundation";
 import {environment} from "../../environments/environment";
 
 export class View<TElement extends HTMLElement = HTMLElement> {
-    private _superview: View | null = null;
-    private readonly _subviews = List.empty<View>();
     public readonly element: TElement;
-
-    public get superview(): View | null {
-        return this._superview;
-    }
-
-    public get subviews(): List<View> {
-        return this._subviews.copy();
-    }
+    private readonly _subviews = List.empty<View>();
 
     constructor(private readonly tagName: TagName = TagName.div) {
         this.element = document.createElement(tagName) as TElement;
@@ -37,6 +28,16 @@ export class View<TElement extends HTMLElement = HTMLElement> {
         if (!environment.production) {
             this.element.dataset.view = this.constructor.name;
         }
+    }
+
+    private _superview: View | null = null;
+
+    public get superview(): View | null {
+        return this._superview;
+    }
+
+    public get subviews(): List<View> {
+        return this._subviews.copy();
     }
 
     public addSubview(subview: View) {

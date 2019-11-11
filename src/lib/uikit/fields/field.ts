@@ -26,29 +26,18 @@ export enum FocusState {
 }
 
 export abstract class Field<TValue> extends View {
+    public abstract value$: Observable<TValue>;
+    public abstract value: TValue;
     protected readonly focusStateSubject = new Subject<FocusState>();
-
     public readonly focusState$ = this.focusStateSubject.pipe(
         distinctUntilChanged()
     );
-
-    public abstract value$: Observable<TValue>;
-    public abstract value: TValue;
-
     private readonly labelView: View = (() => {
         const view = new View(TagName.span);
         view.addClassName(style.label);
         this.addSubview(view);
         return view;
     })();
-
-    public get label(): string {
-        return this.labelView.element.innerText;
-    }
-
-    public set label(value: string) {
-        this.labelView.element.innerText = value;
-    }
 
     constructor() {
         super();
@@ -60,6 +49,14 @@ export abstract class Field<TValue> extends View {
             this.listenFloatingLabelChanges();
             this.listenFocusStateChanges();
         }, 0);
+    }
+
+    public get label(): string {
+        return this.labelView.element.innerText;
+    }
+
+    public set label(value: string) {
+        this.labelView.element.innerText = value;
     }
 
     private listenFloatingLabelChanges() {

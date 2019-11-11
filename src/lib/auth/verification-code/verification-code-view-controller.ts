@@ -20,6 +20,7 @@ import {filter, map, takeUntil} from "rxjs/operators";
 
 export interface VerificationCodeViewControllerDelegate {
     userDidRequestIdentityChange(): void;
+
     userDidVerifyCode(): void;
 }
 

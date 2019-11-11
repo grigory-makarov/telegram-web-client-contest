@@ -40,29 +40,12 @@ export class SearchBox extends View {
         map(() => this.query),
         distinctUntilChanged()
     );
-
-    public get query(): string {
-        return this.inputView.element.value;
-    }
-
-    public set query(value: string) {
-        this.inputView.element.value = value;
-    }
-
     private readonly labelView: View = (() => {
         const view = new View(TagName.span);
         view.addClassName(style.label);
         this.addSubview(view);
         return view;
     })();
-
-    public get label(): string {
-        return this.labelView.element.innerText;
-    }
-
-    public set label(value: string) {
-        this.labelView.element.innerText = value;
-    }
 
     constructor() {
         super();
@@ -72,6 +55,22 @@ export class SearchBox extends View {
         fromEvent(this.element, 'click').subscribe(() => this.inputView.element.focus());
 
         this.setupHidingLabelFeature();
+    }
+
+    public get query(): string {
+        return this.inputView.element.value;
+    }
+
+    public set query(value: string) {
+        this.inputView.element.value = value;
+    }
+
+    public get label(): string {
+        return this.labelView.element.innerText;
+    }
+
+    public set label(value: string) {
+        this.labelView.element.innerText = value;
     }
 
     private setupHidingLabelFeature() {

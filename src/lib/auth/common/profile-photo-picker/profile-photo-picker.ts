@@ -31,7 +31,6 @@ export class ProfilePhotoPicker extends View {
     })();
 
 
-
     public readonly image: Image = (() => {
         const image = new Image("");
         image.element.style.opacity = "0";

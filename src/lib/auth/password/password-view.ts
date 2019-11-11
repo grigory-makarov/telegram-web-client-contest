@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {Button, ButtonType, ContentType, Image, SecureField, TagName, TextField, View} from "@telegram/uikit";
+import {Button, ButtonType, Image, SecureField, TagName, View} from "@telegram/uikit";
 
 const style = require('./password.scss');
 

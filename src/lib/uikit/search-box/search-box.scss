@@ -19,7 +19,7 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
-  background-color: rgba(0,0,0,.04);
+  background-color: rgba(0, 0, 0, .04);
   padding: 0 .75rem;
   width: 22.5rem;
   height: 2.75rem;
@@ -42,7 +42,7 @@
   top: 50%;
   margin-top: -.45rem;
   left: 2.75rem;
-  color: rgba(0,0,0,.54);
+  color: rgba(0, 0, 0, .54);
   transition: color 240ms ease-in-out, transform 240ms ease-in-out;
 
   &.hidden {
@@ -57,6 +57,6 @@
   margin-right: .5rem;
 
   path {
-    fill: rgba(0,0,0,.32);
+    fill: rgba(0, 0, 0, .32);
   }
 }
