@@ -10,6 +10,6 @@
         "static-method-regex": "^[a-z][\\w\\d]+$",
         "function-regex": "^[a-z][\\w\\d]+$"
       }
-    ],
+    ]
   }
 }
