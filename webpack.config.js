@@ -22,8 +22,8 @@ module.exports = (env, argv) => {
         },
         output: {
             path: buildPath,
-            filename: '[contenthash].js',
-            chunkFilename: '[contenthash].js'
+            filename: '[name].[hash].js',
+            chunkFilename: '[id].[hash].js'
         },
         resolve: {
             extensions: ['.ts', '.js'],
@@ -84,8 +84,8 @@ module.exports = (env, argv) => {
                 }
             }),
             new MiniCssExtractPlugin({
-                filename: isDevelopment ? '[name].css' : '[contenthash].css',
-                chunkFilename: isDevelopment ? '[id].css' : '[contenthash].css'
+                filename: isDevelopment ? '[name].css' : '[name].[hash].css',
+                chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css'
             }),
             new CopyPlugin([
                 {
