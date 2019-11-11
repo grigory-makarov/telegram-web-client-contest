@@ -49,7 +49,7 @@ export class IdentityView extends View {
         this.addSubview(heading);
 
         const message = new View(TagName.p);
-        message.element.innerText = "Please confirm your country and enter your phone number.";
+        message.element.innerText = "Please confirm your country and enter your phone number";
         message.addClassName(style.message);
         this.addSubview(message);
 

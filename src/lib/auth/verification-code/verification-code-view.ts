@@ -55,7 +55,7 @@ export class VerificationCodeView extends View {
         phoneNumberContainer.addSubview(this.editPhoneNumberButton);
 
         const message = new View(TagName.p);
-        message.element.innerText = "We have sent you an SMS with the code.";
+        message.element.innerText = "We have sent you an SMS with the code";
         message.addClassName(style.message);
         this.addSubview(message);
 
