@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {ContainerView, SplitView, View} from "@telegram/uikit";
+import {ContainerView, SpinnerView, SplitView, View} from "@telegram/uikit";
 
 const style = require("./messenger.scss");
 
@@ -28,5 +28,8 @@ export class MessengerView extends ContainerView {
         splitView.detailsView.addClassName(style.detailsView);
         splitView.masterWidth = "420px";
         this.addSubview(splitView);
+
+        const spinnerView = new SpinnerView();
+        splitView.masterView.addSubview(spinnerView);
     }
 }
