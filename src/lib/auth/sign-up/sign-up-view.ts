@@ -15,6 +15,7 @@
  */
 
 import {Button, ButtonType, ContentType, Image, SecureField, TagName, TextField, View} from "@telegram/uikit";
+import {ProfilePhotoPicker} from "../common/profile-photo-picker/profile-photo-picker";
 
 const style = require('./sign-up.scss');
 
@@ -23,14 +24,12 @@ export class SignUpView extends View {
     public readonly lastNameField: TextField;
     public readonly completeButton: Button;
 
-    constructor() {
+    constructor(public readonly profilePhotoPicker: ProfilePhotoPicker) {
         super();
 
         this.addClassName(style.signUp);
 
-        const image = new Image("assets/images/logo.png");
-        image.addClassName(style.image);
-        this.addSubview(image);
+        this.addSubview(this.profilePhotoPicker);
 
         const heading = new View(TagName.h1);
         heading.element.innerText = "Your Name";

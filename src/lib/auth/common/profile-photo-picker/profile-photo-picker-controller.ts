@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {View, ViewController} from "@telegram/uikit";
-import {SignUpViewController} from "./sign-up/sign-up-view-controller";
+import {ViewController} from "@telegram/uikit";
+import {ProfilePhotoPicker} from "./profile-photo-picker";
+import {fromEvent} from "rxjs";
 
-const style = require('./auth.scss');
-
-export class AuthViewController extends ViewController {
-    public createView(): View {
-        const view = new View();
-        view.addClassName(style.auth);
-        return view;
+export class ProfilePhotoPickerController extends ViewController<ProfilePhotoPicker> {
+    public createView(): ProfilePhotoPicker {
+        return new ProfilePhotoPicker();
     }
 
-    public viewWillAppear() {
-        super.viewWillAppear();
+    public viewDidLoad() {
+        super.viewDidLoad();
 
-        this.present(new SignUpViewController());
+        fromEvent(this.view.fileInput.element, 'change').subscribe(() => {
+            const file = this.view.fileInput.element.files![0];
+            this.view.image.url = file ? URL.createObjectURL(file) : "";
+        });
     }
 }

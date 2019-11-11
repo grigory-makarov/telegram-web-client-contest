@@ -16,9 +16,23 @@
 
 import {ViewController} from "@telegram/uikit";
 import {SignUpView} from "./sign-up-view";
+import {ProfilePhotoPickerController} from "../common/profile-photo-picker/profile-photo-picker-controller";
+import {PasswordViewController} from "../password/password-view-controller";
 
 export class SignUpViewController extends ViewController<SignUpView> {
+    private readonly profilePhotoPickerController = new ProfilePhotoPickerController();
+
     public createView(): SignUpView {
-        return new SignUpView();
+        this.profilePhotoPickerController.createViewIfNeeded();
+        return new SignUpView(this.profilePhotoPickerController.view);
+    }
+
+    public viewDidLoad() {
+        super.viewDidLoad();
+
+        this.view.completeButton.tap$.subscribe(() => {
+            this.presentingViewController!.present(new PasswordViewController());
+            this.dismiss();
+        });
     }
 }
