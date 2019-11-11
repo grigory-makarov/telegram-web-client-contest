@@ -11,6 +11,7 @@
         "function-regex": "^[a-z][\\w\\d]+$"
       }
     ],
-    "no-relative-imports": false
+    "no-relative-imports": false,
+    "no-inner-html": false
   }
 }
