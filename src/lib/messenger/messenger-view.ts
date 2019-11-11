@@ -16,7 +16,7 @@
 
 import {ContainerView, SplitView, View} from "@telegram/uikit";
 
-const style = require('./messenger.scss');
+const style = require("./messenger.scss");
 
 export class MessengerView extends ContainerView {
     constructor() {
@@ -24,8 +24,9 @@ export class MessengerView extends ContainerView {
         this.addClassName(style.messengerView);
 
         const splitView = new SplitView(new View(), new View());
-        splitView.masterView.addClassName(style.redView);
-        splitView.detailsView.addClassName(style.blueView);
+        splitView.masterView.addClassName(style.masterView);
+        splitView.detailsView.addClassName(style.detailsView);
+        splitView.masterWidth = "420px";
         this.addSubview(splitView);
     }
 }

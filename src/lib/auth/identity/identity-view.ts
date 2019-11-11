@@ -26,7 +26,7 @@ import {
     View
 } from "@telegram/uikit";
 
-const style = require('./identity.scss');
+const style = require("./identity.scss");
 
 export class IdentityView extends View {
     public readonly countryField: TextField;

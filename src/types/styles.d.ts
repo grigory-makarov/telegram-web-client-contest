@@ -14,22 +14,22 @@
  * limitations under the License.
  */
 
-declare module '*.css' {
+declare module "*.css" {
     const classes: { [key: string]: string };
     export default classes;
 }
 
-declare module '*.scss' {
+declare module "*.scss" {
     const classes: { [key: string]: string };
     export default classes;
 }
 
-declare module '*.sass' {
+declare module "*.sass" {
     const classes: { [key: string]: string };
     export default classes;
 }
 
-declare module '*.less' {
+declare module "*.less" {
     const classes: { [key: string]: string };
     export default classes;
 }

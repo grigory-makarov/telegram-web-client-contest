@@ -20,10 +20,21 @@
   max-width: 1680px;
 }
 
-.redView {
-  background-color: red;
+.masterView {
+  background-color: #ffffff;
+  box-sizing: border-box;
+  border-right: 1px solid rgba(0, 0, 0, .12);
+
+  @media screen and (min-width: 1680px) {
+    border-left: 1px solid rgba(0, 0, 0, .12);
+  }
 }
 
-.blueView {
-  background-color: blue;
+.detailsView {
+  background-color: #E6EBEE;
+  box-sizing: border-box;
+
+  @media screen and (min-width: 1680px) {
+    border-right: 1px solid rgba(0, 0, 0, .12);
+  }
 }

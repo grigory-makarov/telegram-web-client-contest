@@ -14,6 +14,6 @@
  * limitations under the License.
  */
 
-export * from './collections';
-export * from './range';
-export * from './utils';
+export * from "./collections";
+export * from "./range";
+export * from "./utils";

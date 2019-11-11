@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-export * from './messenger-view-controller';
+export * from "./messenger-view-controller";

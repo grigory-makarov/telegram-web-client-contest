@@ -19,7 +19,7 @@ import {Subject} from "rxjs";
 import {distinctUntilChanged} from "rxjs/operators";
 import {fatal} from "@telegram/foundation";
 
-const style = require('./checkbox.scss');
+const style = require("./checkbox.scss");
 
 export enum CheckboxState {
     checked,
@@ -87,19 +87,19 @@ export class Checkbox extends View {
 
             switch (state) {
                 case CheckboxState.unchecked:
-                    this.icon.svgContent = require('assets/icons/checkboxempty_svg.svg');
+                    this.icon.svgContent = require("assets/icons/checkboxempty_svg.svg");
                     stateClassName = null;
                     break;
                 case CheckboxState.checked:
-                    this.icon.svgContent = require('assets/icons/checkboxon_svg.svg');
+                    this.icon.svgContent = require("assets/icons/checkboxon_svg.svg");
                     stateClassName = style.indeterminate;
                     break;
                 case CheckboxState.indeterminate:
-                    this.icon.svgContent = require('assets/icons/checkboxblock_svg.svg');
+                    this.icon.svgContent = require("assets/icons/checkboxblock_svg.svg");
                     stateClassName = style.checked;
                     break;
                 default:
-                    fatal('Unknown checkbox state')
+                    fatal("Unknown checkbox state");
             }
 
             if (stateClassName) {

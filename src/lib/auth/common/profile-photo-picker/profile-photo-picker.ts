@@ -17,7 +17,7 @@
 import {Icon, Image, TagName, View} from "@telegram/uikit";
 import {fromEvent} from "rxjs";
 
-const style = require('./profile-photo-picker.scss');
+const style = require("./profile-photo-picker.scss");
 
 
 export class ProfilePhotoPicker extends View {
@@ -43,10 +43,10 @@ export class ProfilePhotoPicker extends View {
         super();
 
         this.addClassName(style.profilePhotoPicker);
-        const icon = new Icon(require('assets/icons/cameraadd_svg.svg'));
+        const icon = new Icon(require("assets/icons/cameraadd_svg.svg"));
         icon.addClassName(style.icon);
         this.addSubview(icon);
 
-        fromEvent(this.element, 'click').subscribe(() => this.fileInput.element.click());
+        fromEvent(this.element, "click").subscribe(() => this.fileInput.element.click());
     }
 }

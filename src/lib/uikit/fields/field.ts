@@ -18,7 +18,7 @@ import {TagName, View} from "@telegram/uikit";
 import {Observable, Subject} from "rxjs";
 import {distinctUntilChanged} from "rxjs/operators";
 
-const style = require('./field.scss');
+const style = require("./field.scss");
 
 export enum FocusState {
     focused,
@@ -70,7 +70,7 @@ export abstract class Field<TValue> extends View {
                 this.labelView.removeClassName(style.floating);
                 hasFloatingClassName = false;
             }
-        })
+        });
     }
 
     private listenFocusStateChanges() {

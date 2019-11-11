@@ -17,7 +17,7 @@
 import {View} from "../view";
 import {TagName} from "../tag-name";
 
-const style = require('./icon.scss');
+const style = require("./icon.scss");
 
 export class Icon extends View {
     constructor(content: string | null = null) {

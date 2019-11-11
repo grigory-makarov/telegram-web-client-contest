@@ -16,7 +16,7 @@
 
 import {Button, ButtonType, Image, SecureField, TagName, View} from "@telegram/uikit";
 
-const style = require('./password.scss');
+const style = require("./password.scss");
 
 export class PasswordView extends View {
     public readonly passwordField: SecureField;

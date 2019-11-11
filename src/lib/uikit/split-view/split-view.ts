@@ -16,7 +16,7 @@
 
 import {View} from "@telegram/uikit";
 
-const style = require('./split-view.scss');
+const style = require("./split-view.scss");
 
 export class SplitView<TMasterView extends View = View, TDetailsView extends View = View> extends View {
     constructor(public readonly masterView: TMasterView,
@@ -52,6 +52,6 @@ export class SplitView<TMasterView extends View = View, TDetailsView extends Vie
 
     public set masterWidth(value: string | null) {
         this.masterView.element.style.width = value;
-        this.detailsView.element.style.width = value ? `calc(100% - ${value})` : '100%';
+        this.detailsView.element.style.width = value ? `calc(100% - ${value})` : "100%";
     }
 }

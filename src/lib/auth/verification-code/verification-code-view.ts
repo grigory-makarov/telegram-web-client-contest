@@ -16,7 +16,7 @@
 
 import {Button, ButtonType, ContentType, Icon, Image, TagName, TextField, View} from "@telegram/uikit";
 
-const style = require('./verification-code.scss');
+const style = require("./verification-code.scss");
 
 export class VerificationCodeView extends View {
     public readonly codeField: TextField;
@@ -43,7 +43,7 @@ export class VerificationCodeView extends View {
         this.editPhoneNumberButton = new Button();
         this.editPhoneNumberButton.type = ButtonType.textButton;
         this.editPhoneNumberButton.text = null;
-        this.editPhoneNumberButton.icon = new Icon(require('assets/icons/edit_svg.svg'));
+        this.editPhoneNumberButton.icon = new Icon(require("assets/icons/edit_svg.svg"));
         phoneNumberContainer.addSubview(this.editPhoneNumberButton);
 
         const message = new View(TagName.p);

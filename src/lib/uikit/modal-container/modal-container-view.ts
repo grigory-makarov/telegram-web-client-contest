@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-import {View} from '../view';
+import {View} from "../view";
 
-const style = require('./modal-container.scss');
+const style = require("./modal-container.scss");
 
 
 export class ModalContainerView extends View {

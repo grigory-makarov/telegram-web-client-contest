@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {View} from '../view';
+import {View} from "../view";
 import {Icon, TagName} from "@telegram/uikit";
 import {fromEvent, Observable} from "rxjs";
 import {distinctUntilChanged, map} from "rxjs/operators";
 
-const style = require('./search-box.scss');
+const style = require("./search-box.scss");
 
 export class SearchBox extends View {
     private readonly iconView: Icon = (() => {
-        const view = new Icon(require('assets/icons/search_svg.svg'));
+        const view = new Icon(require("assets/icons/search_svg.svg"));
         view.addClassName(style.icon);
         this.addSubview(view);
         return view;
@@ -30,13 +30,13 @@ export class SearchBox extends View {
 
     private readonly inputView: View<HTMLInputElement> = (() => {
         const view = new View<HTMLInputElement>(TagName.input);
-        view.element.type = 'search';
+        view.element.type = "search";
         view.addClassName(style.input);
         this.addSubview(view);
         return view;
     })();
 
-    public readonly query$: Observable<string> = fromEvent(this.inputView.element, 'input').pipe(
+    public readonly query$: Observable<string> = fromEvent(this.inputView.element, "input").pipe(
         map(() => this.query),
         distinctUntilChanged()
     );
@@ -52,7 +52,7 @@ export class SearchBox extends View {
         this.label = "Search";
         this.addClassName(style.searchField);
 
-        fromEvent(this.element, 'click').subscribe(() => this.inputView.element.focus());
+        fromEvent(this.element, "click").subscribe(() => this.inputView.element.focus());
 
         this.setupHidingLabelFeature();
     }

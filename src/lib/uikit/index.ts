@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-export * from './tag-name';
-export * from './view';
-export * from './button/button';
-export * from './icon/icon';
-export * from './fields/text-field';
-export * from './fields/secure-field';
-export * from './search-box/search-box';
-export * from './checkbox/checkbox';
-export * from './image';
-export * from './view-controller';
-export * from './split-view/split-view';
-export * from './container/container-view';
+export * from "./tag-name";
+export * from "./view";
+export * from "./button/button";
+export * from "./icon/icon";
+export * from "./fields/text-field";
+export * from "./fields/secure-field";
+export * from "./search-box/search-box";
+export * from "./checkbox/checkbox";
+export * from "./image";
+export * from "./view-controller";
+export * from "./split-view/split-view";
+export * from "./container/container-view";

@@ -20,7 +20,7 @@
  */
 export function assert(value: boolean, message: string | null = null) {
     if (!value) {
-        throw new Error(message ? `Assertion Error: ${message}` : 'Assertion Error!');
+        throw new Error(message ? `Assertion Error: ${message}` : "Assertion Error!");
     }
 }
 
@@ -28,7 +28,7 @@ export function assert(value: boolean, message: string | null = null) {
  * Ensures that the given value is not `null` or `undefined`, otherwise throws assertion error
  */
 export function assertNotNil(value: any, message: string | null = null) {
-    assert(checkNotNil(value), message || 'Expected value to be not nil!');
+    assert(checkNotNil(value), message || "Expected value to be not nil!");
 }
 
 /**
@@ -84,7 +84,7 @@ export function assertObject(value: any) {
  * Checks whether the given `value` is `null` or `undefined`
  */
 export function checkNil(value: any): boolean {
-    return value === null || value === undefined || (typeof value === 'number' && Number.isNaN(value));
+    return value === null || value === undefined || (typeof value === "number" && Number.isNaN(value));
 }
 
 /**
@@ -98,21 +98,21 @@ export function checkNotNil(value: any): boolean {
  * Checks whether the given `value` is valid javascript number.
  */
 export function checkNumber(value: any): boolean {
-    return typeof value === 'number' && !Number.isNaN(value);
+    return typeof value === "number" && !Number.isNaN(value);
 }
 
 /**
  * Checks whether the given `value` is valid javascript boolean value
  */
 export function checkBoolean(value: any): boolean {
-    return typeof value === 'boolean';
+    return typeof value === "boolean";
 }
 
 /**
  * Checks whether the given `value` is valid javascript string
  */
 export function checkString(value: any): boolean {
-    return typeof value === 'string';
+    return typeof value === "string";
 }
 
 /**
@@ -126,7 +126,7 @@ export function checkDate(value: any): boolean {
  * Checks whether the given `value` is callable javascript function or constructor
  */
 export function checkFunction(value: any): boolean {
-    return typeof value === 'function';
+    return typeof value === "function";
 }
 
 /**
@@ -140,7 +140,7 @@ export function checkInstance(value: any, type: Type<any>): boolean {
  * Checks whether the given `value` is pure javascript object created by deriving only from `Object` class
  */
 export function checkObject(value: any): boolean {
-    return typeof value === 'object' && value.constructor === Object;
+    return typeof value === "object" && value.constructor === Object;
 }
 
 /**
@@ -148,14 +148,14 @@ export function checkObject(value: any): boolean {
  */
 export function checkNotEmpty(value: string): boolean {
     assertString(value);
-    return value !== '';
+    return value !== "";
 }
 
 /**
  * Checks whether the given `value` is string that contains any characters different from whitespaces
  */
 export function checkNotBlank(value: string): boolean {
-    return checkNotEmpty(value) && value.replace(/\s+/gmi, '').length > 0;
+    return checkNotEmpty(value) && value.replace(/\s+/gmi, "").length > 0;
 }
 
 export function run<TResult>(expression: () => TResult, fallback: () => TResult): TResult {
@@ -175,7 +175,7 @@ export function fatal(message: string): never {
 }
 
 export function notImplemented(): never {
-    return fatal('Not Implemented');
+    return fatal("Not Implemented");
 }
 
 export type Type<T> = { new(...args: any[]): T } | Function;

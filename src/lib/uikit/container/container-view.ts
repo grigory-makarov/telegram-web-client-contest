@@ -16,7 +16,7 @@
 
 import {View} from "@telegram/uikit";
 
-const style = require('./container.scss');
+const style = require("./container.scss");
 
 
 export class ContainerView extends View {

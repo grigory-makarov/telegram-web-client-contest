@@ -22,7 +22,7 @@ import {
 } from "./verification-code/verification-code-view-controller";
 import {SignUpViewController, SignUpViewControllerDelegate} from "./sign-up/sign-up-view-controller";
 
-const style = require('./auth.scss');
+const style = require("./auth.scss");
 
 export interface AuthViewControllerDelegate {
     userDidAuthenticate(): void;

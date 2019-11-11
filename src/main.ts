@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import './global.scss';
+import "./global.scss";
 import {AppViewController} from "./app/app-view-controller";
 
 AppViewController.presentIn(document.body);

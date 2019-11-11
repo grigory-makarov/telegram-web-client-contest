@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-export * from './auth-view-controller';
+export * from "./auth-view-controller";

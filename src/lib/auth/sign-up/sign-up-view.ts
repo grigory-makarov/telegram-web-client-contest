@@ -17,7 +17,7 @@
 import {Button, ButtonType, ContentType, TagName, TextField, View} from "@telegram/uikit";
 import {ProfilePhotoPicker} from "../common/profile-photo-picker/profile-photo-picker";
 
-const style = require('./sign-up.scss');
+const style = require("./sign-up.scss");
 
 export class SignUpView extends View {
     public readonly firstNameField: TextField;

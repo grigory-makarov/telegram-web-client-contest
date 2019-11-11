@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import {Range} from './range';
-import {assert, assertNotNil, fatal, Type} from './utils';
+import {Range} from "./range";
+import {assert, assertNotNil, fatal, Type} from "./utils";
 
 export class List<TElement> {
     private constructor(private elements: TElement[]) {
@@ -201,7 +201,7 @@ export class List<TElement> {
     }
 
     public joined(): string {
-        return this.joinedWith('');
+        return this.joinedWith("");
     }
 
     public joinedWith(separator: string): string {
@@ -342,7 +342,7 @@ export class List<TElement> {
 
     public dropFirst(offset: number) {
         assert(offset > 0);
-        fatal('Not Implemented');
+        fatal("Not Implemented");
     }
 
     public removeLast() {
@@ -351,7 +351,7 @@ export class List<TElement> {
 
     public dropLast(offset: number) {
         assert(offset > 0);
-        fatal('Not Implemented');
+        fatal("Not Implemented");
     }
 
     public removeAllWhere(closure: (element: TElement) => boolean) {

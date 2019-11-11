@@ -27,7 +27,7 @@ export class ProfilePhotoPickerController extends ViewController<ProfilePhotoPic
     public viewWillAppear() {
         super.viewWillAppear();
 
-        fromEvent(this.view.fileInput.element, 'change').pipe(
+        fromEvent(this.view.fileInput.element, "change").pipe(
             map(() => this.view.fileInput.element.files![0]),
             map(file => this.userDidPickFile(file)),
             takeUntil(this.viewDidDisappear$)
@@ -35,6 +35,6 @@ export class ProfilePhotoPickerController extends ViewController<ProfilePhotoPic
     }
 
     private userDidPickFile(file: File | null) {
-        console.log('User did select file!');
+        console.log("User did select file!");
     }
 }

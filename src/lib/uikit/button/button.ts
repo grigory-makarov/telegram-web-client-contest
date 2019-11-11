@@ -20,7 +20,7 @@ import {TagName} from "../tag-name";
 import {fromEvent} from "rxjs";
 import {fatal} from "@telegram/foundation";
 
-const style = require('./button.scss');
+const style = require("./button.scss");
 
 export enum ButtonType {
     pushButton,
@@ -29,7 +29,7 @@ export enum ButtonType {
 }
 
 export class Button extends View<HTMLButtonElement> {
-    public readonly tap$ = fromEvent(this.element, 'click');
+    public readonly tap$ = fromEvent(this.element, "click");
     private currentClassName?: string;
     // region Setting text content of the button
     private readonly textView: View = (() => {
@@ -72,7 +72,7 @@ export class Button extends View<HTMLButtonElement> {
                 this.currentClassName = style.mixedButton;
                 break;
             default:
-                fatal('Unknown button type!')
+                fatal("Unknown button type!");
         }
 
         this.addClassName(this.currentClassName!);
