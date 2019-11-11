@@ -12,6 +12,14 @@
       }
     ],
     "no-relative-imports": false,
-    "no-inner-html": false
+    "no-inner-html": false,
+    "quotemark": [
+      true,
+      "double"
+    ],
+    "semicolon": [
+      true,
+      "always"
+    ]
   }
 }
