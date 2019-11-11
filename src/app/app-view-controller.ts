@@ -15,7 +15,7 @@
  */
 
 import {View, ViewController} from "@telegram/uikit";
-import {AuthViewController} from "@telegram/auth";
+import {MessengerViewController} from "@telegram/messenger";
 
 export class AppViewController extends ViewController {
     public static presentIn(element: HTMLElement) {
@@ -36,9 +36,12 @@ export class AppViewController extends ViewController {
     public viewWillAppear() {
         super.viewWillAppear();
 
-        const authViewController = new AuthViewController(undefined as any);
-        authViewController.viewWillAppear();
-        this.view.addSubview(authViewController.view);
-        authViewController.viewDidAppear();
+        this.present(new MessengerViewController());
+    }
+
+    private present(controller: ViewController) {
+        controller.viewWillAppear();
+        this.view.addSubview(controller.view);
+        controller.viewDidAppear();
     }
 }

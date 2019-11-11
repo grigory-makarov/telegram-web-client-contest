@@ -31,6 +31,9 @@
       ],
       "@telegram/auth": [
         "lib/auth/index.ts"
+      ],
+      "@telegram/messenger": [
+        "lib/messenger/index.ts"
       ]
     },
     "plugins": [
