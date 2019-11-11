@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {View, ViewController} from "@telegram/uikit";
+import {ContainerView, View, ViewController} from "@telegram/uikit";
 import {MessengerViewController} from "@telegram/messenger";
 
 export class AppViewController extends ViewController {
@@ -30,7 +30,7 @@ export class AppViewController extends ViewController {
     }
 
     public createView(): View {
-        return new View();
+        return new ContainerView();
     }
 
     public viewWillAppear() {
