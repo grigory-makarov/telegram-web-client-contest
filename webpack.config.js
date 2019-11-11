@@ -16,7 +16,10 @@ module.exports = (env, argv) => {
     return {
         mode: isProduction ? 'production' : 'development',
         devtool: isDevelopment ? 'inline-source-map' : '',
-        entry: path.resolve(srcPath, 'main.ts'),
+        entry: {
+            main: path.resolve(srcPath, 'main.ts'),
+            polyfills: path.resolve(srcPath, "polyfills.ts")
+        },
         output: {
             path: buildPath,
             filename: '[contenthash].js',

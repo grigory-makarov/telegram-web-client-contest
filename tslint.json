@@ -20,6 +20,7 @@
     "semicolon": [
       true,
       "always"
-    ]
+    ],
+    "prefer-type-cast": false
   }
 }
