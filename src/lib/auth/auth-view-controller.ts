@@ -16,6 +16,8 @@
 
 import {View, ViewController} from "@telegram/uikit";
 import {VerificationCodeViewController} from "./verification-code/verification-code-view-controller";
+import {PasswordViewController} from "./password/password-view-controller";
+import {SignUpViewController} from "./sign-up/sign-up-view-controller";
 
 const style = require('./auth.scss');
 
@@ -29,6 +31,6 @@ export class AuthViewController extends ViewController {
     public viewWillAppear() {
         super.viewWillAppear();
 
-        this.present(new VerificationCodeViewController());
+        this.present(new SignUpViewController());
     }
 }
