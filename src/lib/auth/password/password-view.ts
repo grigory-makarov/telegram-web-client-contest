@@ -19,8 +19,8 @@ import {Button, ButtonType, ContentType, Image, SecureField, TagName, TextField,
 const style = require('./password.scss');
 
 export class PasswordView extends View {
-    private readonly passwordField: SecureField;
-    private readonly nextButton: Button;
+    public readonly passwordField: SecureField;
+    public readonly nextButton: Button;
 
     constructor() {
         super();
