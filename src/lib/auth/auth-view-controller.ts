@@ -29,6 +29,9 @@ export class AuthViewController extends ViewController {
     public viewWillAppear() {
         super.viewWillAppear();
 
-        this.present(new SignUpViewController());
+        const signUpViewController = new SignUpViewController();
+        signUpViewController.viewWillAppear();
+        this.view.addSubview(signUpViewController.view);
+        signUpViewController.viewDidAppear();
     }
 }

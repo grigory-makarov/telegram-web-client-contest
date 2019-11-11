@@ -15,7 +15,9 @@
  */
 
 import './global.scss';
-import {AppViewController} from "./app/app-view-controller";
+import {AuthViewController} from "@telegram/auth";
 
-const controller = new AppViewController();
-controller.embedIn(document.body);
+const controller = new AuthViewController();
+controller.viewWillAppear();
+document.body.append(controller.view.element);
+controller.viewDidAppear();

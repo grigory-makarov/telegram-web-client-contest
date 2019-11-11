@@ -23,8 +23,8 @@ export class ProfilePhotoPickerController extends ViewController<ProfilePhotoPic
         return new ProfilePhotoPicker();
     }
 
-    public viewDidLoad() {
-        super.viewDidLoad();
+    public viewWillAppear() {
+        super.viewWillAppear();
 
         fromEvent(this.view.fileInput.element, 'change').subscribe(() => {
             const file = this.view.fileInput.element.files![0];

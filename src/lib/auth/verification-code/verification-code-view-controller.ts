@@ -19,8 +19,11 @@ import {VerificationCodeView} from "./verification-code-view";
 
 export class VerificationCodeViewController extends ViewController<VerificationCodeView> {
     public createView(): VerificationCodeView {
-        const view = new VerificationCodeView();
-        view.phoneNumber = "+31 12 34 56 789";
-        return view;
+        return new VerificationCodeView();
+    }
+
+    public viewWillAppear() {
+        super.viewWillAppear();
+        this.view.phoneNumber = "+31 12 34 56 789";
     }
 }
