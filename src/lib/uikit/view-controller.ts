@@ -42,10 +42,13 @@ export abstract class ViewController<TView extends View = View> {
     public createViewIfNeeded() {
         if (!this.isViewCreated) {
             this._view = this.createView();
+            this.viewDidLoad();
         }
     }
 
     // endregion
+
+    public viewDidLoad() { }
 
     public viewWillAppear() {
         if (!environment.production) {
