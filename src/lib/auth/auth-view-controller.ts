@@ -24,10 +24,18 @@ import {SignUpViewController, SignUpViewControllerDelegate} from "./sign-up/sign
 
 const style = require('./auth.scss');
 
+export interface AuthViewControllerDelegate {
+    userDidAuthenticate(): void;
+}
+
 export class AuthViewController extends ViewController implements SignUpViewControllerDelegate, IdentityViewControllerDelegate, VerificationCodeViewControllerDelegate {
     private readonly signUpViewController = new SignUpViewController(this);
     private readonly identityViewController = new IdentityViewController(this);
     private readonly verificationCodeViewController = new VerificationCodeViewController(this);
+
+    constructor(private readonly delegate: AuthViewControllerDelegate) {
+        super();
+    }
 
     public createView(): View {
         const view = new View();
@@ -56,7 +64,7 @@ export class AuthViewController extends ViewController implements SignUpViewCont
     }
 
     public userDidSignUp() {
-        this.segue(this.signUpViewController, this.identityViewController);
+        this.delegate.userDidAuthenticate();
     }
 
     private segue(source: ViewController, destination: ViewController) {
