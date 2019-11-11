@@ -1,4 +1,4 @@
-/*
+/*!
  * Copyright 2019 Grigory Makarov <makkgregory@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,16 +14,24 @@
  * limitations under the License.
  */
 
-export * from "./tag-name";
-export * from "./view";
-export * from "./button/button";
-export * from "./icon/icon";
-export * from "./fields/text-field";
-export * from "./fields/secure-field";
-export * from "./search-box/search-box";
-export * from "./checkbox/checkbox";
-export * from "./image";
-export * from "./view-controller";
-export * from "./split-view/split-view";
-export * from "./container/container-view";
-export * from "./spinner/spinner-view";
+.spinnerView {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.icon {
+  width: 52px;
+  height: 52px;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  circle {
+    stroke: #4ea4f6;
+  }
+}
