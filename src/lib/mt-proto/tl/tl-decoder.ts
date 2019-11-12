@@ -6,7 +6,7 @@ export class TlDecoder {
     private intView!: Int32Array;
     private byteView!: Uint8Array;
 
-    constructor(private readonly buffer: ArrayBuffer) {
+    constructor(public readonly buffer: ArrayBuffer) {
     }
 
     public decodeInt(): number {

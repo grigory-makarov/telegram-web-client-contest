@@ -7,19 +7,16 @@ export class TlEncoder {
     private static readonly initialCapacity = 2048;
     private offset = 0;
     private capacity!: number;
-    private buffer!: ArrayBuffer;
+    private _buffer!: ArrayBuffer;
     private intView!: Int32Array;
     private byteView!: Uint8Array;
 
-    constructor() {
-        this.reserveCapacity(TlEncoder.initialCapacity);
+    public get buffer(): ArrayBuffer {
+        return this._buffer;
     }
 
-    public get encodedBytes(): Uint8Array {
-        const buffer = new ArrayBuffer(this.offset);
-        const byteView = new Uint8Array(buffer);
-        byteView.set(this.byteView.subarray(0, this.offset));
-        return byteView;
+    constructor() {
+        this.reserveCapacity(TlEncoder.initialCapacity);
     }
 
     public encodeInt(value: number) {
@@ -144,9 +141,9 @@ export class TlEncoder {
         const prevIntView = this.intView;
         const prevByteView = this.byteView;
 
-        this.buffer = new ArrayBuffer(this.capacity);
-        this.intView = new Int32Array(this.buffer);
-        this.byteView = new Uint8Array(this.buffer);
+        this._buffer = new ArrayBuffer(this.capacity);
+        this.intView = new Int32Array(this._buffer);
+        this.byteView = new Uint8Array(this._buffer);
 
         if (prevIntView && prevByteView) {
             this.intView.set(prevIntView);
