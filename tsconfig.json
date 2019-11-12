@@ -34,6 +34,9 @@
       ],
       "@telegram/messenger": [
         "lib/messenger/index.ts"
+      ],
+      "@telegram/mt-proto": [
+        "lib/mt-proto/index.ts"
       ]
     },
     "plugins": [
