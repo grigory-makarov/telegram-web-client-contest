@@ -1,10 +1,11 @@
 export enum TlObjectType {
     int = "int",
+    long = "long",
+    double = "double",
     int128 = "int128",
     int256 = "int256",
     int512 = "int512",
-    string = "string",
     bytes = "bytes",
-    double = "double",
+    string = "string",
     bool = "Bool",
 }

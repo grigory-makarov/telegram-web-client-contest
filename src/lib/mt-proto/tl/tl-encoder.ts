@@ -36,6 +36,17 @@ export class TlEncoder {
         this.encodeInt(intView[1]);
     }
 
+    public encodeLong(value: bigint) {
+        const buffer = new ArrayBuffer(8);
+        const intView = new Int32Array(buffer);
+        const bigintView = new BigInt64Array(buffer);
+
+        bigintView[0] = value;
+
+        this.encodeInt(intView[0]);
+        this.encodeInt(intView[1]);
+    }
+
     public encodeBoolean(value: boolean) {
         this.encodeInt(value ? TlBool.true : TlBool.false);
     }
@@ -84,6 +95,9 @@ export class TlEncoder {
                 break;
             case TlObjectType.double:
                 this.encodeDouble(value as number);
+                break;
+            case TlObjectType.long:
+                this.encodeLong(value as bigint);
                 break;
             case TlObjectType.bool:
                 this.encodeBoolean(value as boolean);

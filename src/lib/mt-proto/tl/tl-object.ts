@@ -1,1 +1,1 @@
-export type TlObject = number | string | boolean | Uint8Array;
+export type TlObject = number | bigint | string | boolean | Uint8Array;
