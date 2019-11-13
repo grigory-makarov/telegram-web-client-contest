@@ -4,7 +4,7 @@ import {
     Checkbox,
     CheckboxState,
     ContentType,
-    Image,
+    Icon,
     TagName,
     TextField,
     View
@@ -23,7 +23,7 @@ export class IdentityView extends View {
 
         this.addClassName(style.signIn);
 
-        const logo = new Image("assets/images/logo.png");
+        const logo = new Icon(require("assets/icons/logo.svg"));
         logo.addClassName(style.logo);
         this.addSubview(logo);
 

@@ -1,4 +1,4 @@
-import {Button, ButtonType, ContentType, Icon, Image, TagName, TextField, View} from "@telegram/uikit";
+import {Button, ButtonType, ContentType, Icon, TagName, TextField, View} from "@telegram/uikit";
 
 const style = require("./verification-code.scss");
 
@@ -12,7 +12,7 @@ export class VerificationCodeView extends View {
 
         this.addClassName(style.verificationCode);
 
-        const logo = new Image("assets/images/logo.png");
+        const logo = new Icon(require("assets/icons/logo.svg"));
         logo.addClassName(style.logo);
         this.addSubview(logo);
 

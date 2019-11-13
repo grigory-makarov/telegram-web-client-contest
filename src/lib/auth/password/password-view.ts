@@ -1,4 +1,4 @@
-import {Button, ButtonType, Image, SecureField, TagName, View} from "@telegram/uikit";
+import {Button, ButtonType, Icon, SecureField, TagName, View} from "@telegram/uikit";
 
 const style = require("./password.scss");
 
@@ -11,7 +11,7 @@ export class PasswordView extends View {
 
         this.addClassName(style.password);
 
-        const image = new Image("assets/images/logo.png");
+        const image = new Icon(require("assets/icons/logo.svg"));
         image.addClassName(style.image);
         this.addSubview(image);
 

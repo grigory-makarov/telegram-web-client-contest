@@ -1,5 +1,5 @@
 import {ContainerView, View, ViewController} from "@telegram/uikit";
-import {MessengerViewController} from "@telegram/messenger";
+import {AuthViewController} from "@telegram/auth";
 
 export class AppViewController extends ViewController {
     private constructor() {
@@ -20,7 +20,8 @@ export class AppViewController extends ViewController {
     public viewWillAppear() {
         super.viewWillAppear();
 
-        this.present(new MessengerViewController());
+        this.present(new AuthViewController(null as any));
+        // this.present(new MessengerViewController());
     }
 
     private present(controller: ViewController) {
