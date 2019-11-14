@@ -2,7 +2,7 @@ import {Range} from "./range";
 import {assert, assertNotNil, fatal, Type} from "./utils";
 
 export class List<TElement> {
-    private constructor(private elements: TElement[]) {
+    constructor(private elements: TElement[]) {
     }
 
     public get lastIndex(): number {
