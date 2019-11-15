@@ -11,3 +11,4 @@ export * from "./view-controller";
 export * from "./split-view/split-view";
 export * from "./container/container-view";
 export * from "./spinner/spinner-view";
+export * from "./scroll-view/scroll-view";
