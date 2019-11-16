@@ -10,7 +10,7 @@ module.exports = (env, argv) => {
     const isProduction = argv.mode === 'production';
     const isDevelopment = !isProduction;
     const srcPath = path.resolve(__dirname, 'src');
-    const buildPath = path.resolve(__dirname, 'build');
+    const buildPath = path.resolve(__dirname, 'dist');
     const tsconfigPath = path.resolve(__dirname, 'tsconfig.json');
 
     return {
