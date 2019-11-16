@@ -1,14 +1,22 @@
-.searchField {
+.host {
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
-  background-color: rgba(0, 0, 0, .04);
+  background-color: rgba(0, 0, 0, .06);
   padding: 0 .75rem;
-  width: 22.5rem;
+  width: 100%;
   height: 2.75rem;
   border-radius: 1.375rem;
   cursor: text;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+  transition: border 160ms ease-in-out, background-color 160ms ease-in-out;
+
+  &.focused {
+    background-color: #ffffff;
+    border-color: #4ea4f6;
+  }
 }
 
 .input {
@@ -24,10 +32,10 @@
 .label {
   position: absolute;
   top: 50%;
-  margin-top: -.45rem;
+  margin-top: -.5rem;
   left: 2.75rem;
   color: rgba(0, 0, 0, .54);
-  transition: color 240ms ease-in-out, transform 240ms ease-in-out;
+  transition: color 160ms ease-in-out, transform 160ms ease-in-out;
 
   &.hidden {
     color: transparent;
@@ -40,7 +48,17 @@
   height: 1.5rem;
   margin-right: .5rem;
 
-  path {
+  & svg {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  & path {
+    transition: fill 160ms ease-in-out;
     fill: rgba(0, 0, 0, .32);
   }
+}
+
+.host.focused path {
+  fill: #4ea4f6;
 }

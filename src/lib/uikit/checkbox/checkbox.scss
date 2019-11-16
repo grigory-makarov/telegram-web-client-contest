@@ -1,26 +1,26 @@
-.checkbox {
+.host {
   display: flex;
+  width: 100%;
+  box-sizing: border-box;
   justify-content: flex-start;
   align-items: center;
-  height: 20px;
+  cursor: pointer;
 }
 
-.icon {
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
+.checkbox {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 2em;
 
   path {
     fill: rgba(0, 0, 0, .32);
   }
 }
 
-.label {
-  font-weight: 500;
-  margin-left: 2em;
+.host.checked .checkbox path {
+  fill: #4ea4f6;
 }
 
-.checked .icon path,
-.indeterminate .icon path {
-  fill: #4ea4f6;
+.label {
+  font-weight: 600;
 }

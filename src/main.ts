@@ -1,4 +1,7 @@
 import "./global.scss";
-import {AppViewController} from "./app/app-view-controller";
+import {Button} from "@telegram/uikit";
 
-AppViewController.presentIn(document.body);
+const button = new Button();
+button.embedTrailingIconSvgContent(require("assets/icons/loader.svg"));
+
+document.body.append(button);

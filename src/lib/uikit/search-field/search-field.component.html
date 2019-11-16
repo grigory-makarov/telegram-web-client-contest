@@ -1,0 +1,3 @@
+<figure inlineSVG="assets/icons/search_svg.svg"></figure>
+<input #input (blur)="focused = false" (focus)="focused = true" [(ngModel)]="value" type="search">
+<div [class.hidden]="value.length > 0" class="label">{{ label }}</div>

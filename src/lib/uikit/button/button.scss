@@ -1,6 +1,6 @@
-.button {
+.host {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   position: relative;
   overflow: hidden;
@@ -9,10 +9,6 @@
   border-radius: 10px;
   box-sizing: border-box;
   height: 3.25rem;
-
-  &.noTextButton {
-    border-radius: 50%;
-  }
 
   &:hover::before {
     display: block;
@@ -26,46 +22,55 @@
   }
 }
 
-.textButton {
+.icon {
+  & svg {
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+  }
+}
+
+.host.textButton {
   background-color: transparent;
 
   .icon path {
     fill: rgba(0, 0, 0, .64);
   }
+
+  .icon circle {
+    stroke: rgba(0, 0, 0, .64);
+  }
 }
 
-.pushButton {
+.host.pushButton {
   background-color: #4ea4f6;
 
   .text {
     color: #ffffff;
-    font-weight: 500;
+    font-weight: 600;
     text-transform: uppercase;
   }
 
-  .icon path {
+  & path {
     fill: #ffffff;
   }
+
+  & circle {
+    stroke: #ffffff;
+  }
 }
 
-.mixedButton {
+.host.mixedButton {
   .text {
     color: #4ea4f6;
-    font-weight: 500;
+    font-weight: 600;
     text-transform: uppercase;
   }
 
-  .icon path {
+  & path {
     fill: #4ea4f6;
   }
-}
 
-.icon {
-  width: 20px;
-  height: 20px;
-  margin-right: 1.25em;
-}
-
-.noTextButton .icon {
-  margin-right: 0;
+  & circle {
+    stroke: #4ea4f6;
+  }
 }

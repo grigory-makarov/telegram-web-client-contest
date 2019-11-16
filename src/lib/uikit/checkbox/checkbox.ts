@@ -1,94 +1,66 @@
-import {Icon, TagName, View} from "@telegram/uikit";
-import {Subject} from "rxjs";
-import {distinctUntilChanged} from "rxjs/operators";
-import {fatal} from "@telegram/foundation";
+import {fromEvent} from "rxjs";
 
-const style = require("./checkbox.scss");
+const styles = require("./checkbox.scss");
 
-export enum CheckboxState {
-    checked,
-    unchecked,
-    indeterminate
-}
-
-export class Checkbox extends View {
-    private readonly stateStream = new Subject<CheckboxState>();
-    public readonly state$ = this.stateStream.pipe(
-        distinctUntilChanged()
-    );
-    private readonly icon: Icon = (() => {
-        const icon = new Icon();
-        icon.addClassName(style.icon);
-        this.addSubview(icon);
-        return icon;
-    })();
-    private readonly labelView: View = (() => {
-        const label = new View(TagName.span);
-        label.addClassName(style.label);
-        this.addSubview(label);
-        return label;
-    })();
+export class Checkbox extends HTMLElement {
+    private readonly checkbox: HTMLElement;
+    private readonly labelContainer: HTMLElement;
 
     constructor() {
         super();
-        this.addClassName(style.checkbox);
-        this.setupStateListener();
-        this.state = CheckboxState.unchecked;
+
+        this.classList.add(styles.host);
+
+        this.checkbox = document.createElement("figure");
+        this.checkbox.classList.add(styles.checkbox);
+        this.append(this.checkbox);
+
+        this.labelContainer = document.createElement("div");
+        this.labelContainer.classList.add(styles.label);
+        this.append(this.labelContainer);
+
+        this.checked = true;
+        fromEvent(this, "click").subscribe(() => this.checked = !this.checked);
     }
 
-    private _state = CheckboxState.unchecked;
+    private _checked = false;
 
-    public get state(): CheckboxState {
-        return this._state;
+    public get checked(): boolean {
+        return this._checked;
     }
 
-    public set state(value: CheckboxState) {
-        this.stateStream.next(value);
-        this._state = value;
-    }
+    public set checked(value: boolean) {
+        if (value !== this.checked) {
+            this._checked = value;
 
-    public get label(): string {
-        return this.labelView.element.innerText;
-    }
-
-    public set label(value: string) {
-        this.labelView.element.innerText = value;
-    }
-
-    public toggle() {
-        this.state = this.state === CheckboxState.checked ? CheckboxState.unchecked : CheckboxState.checked;
-    }
-
-    private setupStateListener() {
-        this.element.onclick = () => this.toggle();
-
-        let stateClassName: string | null = null;
-
-        this.state$.subscribe(state => {
-            if (stateClassName) {
-                this.removeClassName(stateClassName);
+            if (this.checked) {
+                this.checkbox.innerHTML = require("assets/icons/checkboxon_svg.svg");
+                this.classList.add(styles.checked);
+            } else {
+                this.checkbox.innerHTML = require("assets/icons/checkboxempty_svg.svg");
+                this.classList.remove(styles.checked);
             }
+        }
+    }
 
-            switch (state) {
-                case CheckboxState.unchecked:
-                    this.icon.svgContent = require("assets/icons/checkboxempty_svg.svg");
-                    stateClassName = null;
-                    break;
-                case CheckboxState.checked:
-                    this.icon.svgContent = require("assets/icons/checkboxon_svg.svg");
-                    stateClassName = style.indeterminate;
-                    break;
-                case CheckboxState.indeterminate:
-                    this.icon.svgContent = require("assets/icons/checkboxblock_svg.svg");
-                    stateClassName = style.checked;
-                    break;
-                default:
-                    fatal("Unknown checkbox state");
-            }
+    private _label: string | null = null;
 
-            if (stateClassName) {
-                this.addClassName(stateClassName);
-            }
-        });
+    public get label(): string | null {
+        return this._label;
+    }
+
+    public set label(value: string | null) {
+        if (this.label !== value) {
+            this._label = value;
+
+            this.labelContainer.innerText = this.label || "";
+            this.labelContainer.hidden = !this.hasLabel;
+        }
+    }
+
+    public get hasLabel(): boolean {
+        return !!this.label;
     }
 }
+
+customElements.define("ui-checkbox", Checkbox);
