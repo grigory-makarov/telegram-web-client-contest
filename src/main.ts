@@ -1,5 +1,4 @@
 import "./global.scss";
-import {AuthComponent} from "@telegram/auth";
+import {Messenger} from "@telegram/messenger";
 
-const auth = new AuthComponent();
-document.body.append(auth);
+document.body.append(new Messenger());

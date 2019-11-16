@@ -1,0 +1,50 @@
+<div class="pinned-messages">
+    <section class="chat">
+        <div class="thumbnail-container">
+            <figure inlineSVG="assets/icons/avatar_savedmessages_svg.svg"></figure>
+        </div>
+
+        <div class="chat-info">
+            <div class="chat-name">
+                <h2>Saved Messages</h2>
+
+                <div class="saved-message-receive-date">
+                    <figure inlineSVG="assets/icons/2checks_svg.svg"></figure>
+                    <div class="receive-date">23:20</div>
+                </div>
+
+            </div>
+
+            <div class="chat-message-preview">
+                <p>Eat something!</p>
+
+                <figure class="pinned-indicator" inlineSVG="assets/icons/pinnedchat_svg.svg"></figure>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="messages">
+    <section *ngFor="let user of users" class="chat">
+
+        <div class="thumbnail-container">
+            <img [src]="user.picture.thumbnail" alt="{{ user.name.first }} {{ user.name.last }}">
+            <div *ngIf="random > .6" class="online-marker"></div>
+        </div>
+
+        <div class="chat-info">
+            <div class="chat-name">
+                <h2>{{ user.name.first }} {{ user.name.last }}</h2>
+
+                <div class="receive-date">20:00</div>
+            </div>
+
+            <div class="chat-message-preview">
+                <p>{{ user.email }}</p>
+                <div [class.active]="random > .5" [style.width.rem]="1 + user.dob.age.toString().length * .5"
+                     class="new-message-counter">{{ user.dob.age }}
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

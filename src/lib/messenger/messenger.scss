@@ -1,0 +1,24 @@
+.host {
+  display: flex;
+  height: 100%;
+  margin: 0 auto;
+  max-width: 1680px;
+
+  @media screen and (min-width: 1680px) {
+    border-left: 1px solid rgba(0, 0, 0, .12);
+    border-right: 1px solid rgba(0, 0, 0, .12);
+  }
+}
+
+.sidebarContainer {
+  width: 26rem;
+  height: 100%;
+  background-color: #ffffff;
+  border-right: 1px solid rgba(0, 0, 0, .12);
+}
+
+.content {
+  flex-grow: 1;
+  height: 100%;
+  background-color: #E6EBEE;
+}

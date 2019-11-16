@@ -1,0 +1,24 @@
+.host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .5rem;
+  max-height: 4.25rem;
+  box-sizing: border-box;
+
+  app-search-field {
+    width: auto;
+    flex-grow: 1;
+  }
+}
+
+.content {
+  width: 100%;
+  height: calc(100% - 4.25rem);
+}

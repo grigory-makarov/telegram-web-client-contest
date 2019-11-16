@@ -125,6 +125,17 @@ input {
 }
 
 ::-webkit-scrollbar {
-  width: 0;
-  background: transparent;
+  width: .46rem;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, .04);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, .12);
+
+  &:hover {
+    background-color: rgba(0, 0, 0, .36);
+  }
 }
