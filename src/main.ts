@@ -1,7 +1,5 @@
 import "./global.scss";
-import {Button} from "@telegram/uikit";
+import {AuthComponent} from "@telegram/auth";
 
-const button = new Button();
-button.embedTrailingIconSvgContent(require("assets/icons/loader.svg"));
-
-document.body.append(button);
+const auth = new AuthComponent();
+document.body.append(auth);
