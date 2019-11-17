@@ -21,6 +21,8 @@
       true,
       "always"
     ],
-    "prefer-type-cast": false
+    "prefer-type-cast": false,
+    "import-name": false,
+    "export-name": false
   }
 }

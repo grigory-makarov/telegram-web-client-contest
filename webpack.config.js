@@ -36,6 +36,12 @@ module.exports = (env, argv) => {
         module: {
             rules: [
                 {
+                    test: /\.worker\.ts$/,
+                    use: {
+                        loader: 'worker-loader'
+                    }
+                },
+                {
                     test: /\.ts$/i,
                     use: {
                         loader: 'ts-loader',
