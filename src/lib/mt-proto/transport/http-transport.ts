@@ -20,7 +20,7 @@ export class HttpTransport extends Transport {
             http.open("POST", "https://venus.web.telegram.org/apiw_test1");
             request.encode()
                 .then(data => http.send(data.bytes))
-                .catch(error => console.error(error));
+                .catch(error => console.error(error.message));
         });
     }
 }
