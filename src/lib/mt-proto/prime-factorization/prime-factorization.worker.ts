@@ -24,6 +24,10 @@ function computePrimeFactors(number: bigint): bigint[] {
             primeFactors.push(primeFactor);
             current /= i;
         }
+
+        if (primeFactors.length > 1) {
+            return primeFactors;
+        }
     }
 
     if (primeFactor < current) {
