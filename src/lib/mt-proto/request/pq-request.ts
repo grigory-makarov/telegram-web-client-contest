@@ -1,5 +1,7 @@
-import {Data, Request} from "@telegram/mt-proto";
 import {Int128Coder, IntCoder} from "../serialization/coders";
+import {Data} from "../serialization/data";
+import {Request} from "./request";
+
 
 export class PqRequest extends Request {
     /**

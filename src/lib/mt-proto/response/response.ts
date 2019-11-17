@@ -1,5 +1,5 @@
-import {Data} from "@telegram/mt-proto";
 import {Int64Coder, IntCoder} from "../serialization/coders";
+import {Data} from "../serialization/data";
 
 export abstract class Response {
     public authKeyId: bigint;
