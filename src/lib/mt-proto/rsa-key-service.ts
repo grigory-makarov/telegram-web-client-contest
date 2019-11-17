@@ -38,7 +38,7 @@ export class RsaKeyService {
         return key;
     }
 
-    public async loadRsaKeysIfNeeded() {
+    private async loadRsaKeysIfNeeded() {
         if (!this.loadedKeys) {
             this.loadedKeys = new Map();
         }
