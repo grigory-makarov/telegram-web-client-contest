@@ -32,6 +32,7 @@ export class PromptIdentityComponent extends HTMLElement {
 
         const phoneNumberField = new TextField();
         phoneNumberField.label = "Phone Number";
+        phoneNumberField.type = "tel";
         this.append(phoneNumberField);
 
         const keepSignedInCheckbox = new Checkbox();
