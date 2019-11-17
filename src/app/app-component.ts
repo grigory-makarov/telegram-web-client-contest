@@ -34,8 +34,13 @@ export class AppComponent extends HTMLElement {
     }
 
     public async connectedCallback() {
-        await MtProto.shared.authService.authenticate();
-        await this.loadAuthentication();
+        try {
+            await MtProto.shared.authService.authenticate();
+            await this.loadMessenger();
+        } catch (error) {
+            console.error(error.message);
+            await this.loadAuthentication();
+        }
     }
 
     private async loadMessenger() {
