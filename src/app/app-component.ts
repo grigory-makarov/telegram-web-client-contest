@@ -35,6 +35,16 @@ export class AppComponent extends HTMLElement {
 
     public async connectedCallback() {
         await MtProto.shared.authService.authenticate();
+        await this.loadAuthentication();
+    }
+
+    private async loadMessenger() {
+        const {Messenger} = await import("@telegram/messenger");
+        this.presentedComponent = new Messenger();
+    }
+
+    private async loadAuthentication() {
+        const {AuthComponent} = await import("@telegram/auth");
         this.presentedComponent = new AuthComponent();
     }
 }
