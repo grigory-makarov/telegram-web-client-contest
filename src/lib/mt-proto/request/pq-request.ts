@@ -14,7 +14,7 @@ export class PqRequest extends Request {
         this.nonce = nonce;
     }
 
-    protected encodeBody(): Data {
+    protected async encodeBody(): Promise<Data> {
         const data = Data.allocate({initialCapacity: 20});
         IntCoder.shared.encode(0x60469778, data);
         Int128Coder.shared.encode(this.nonce, data);

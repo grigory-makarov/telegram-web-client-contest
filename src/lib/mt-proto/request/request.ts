@@ -13,9 +13,9 @@ export abstract class Request {
      */
     public messageId = 0n;
 
-    public encode(): Uint8Array {
+    public async encode(): Promise<Data> {
         const data = Data.allocate({initialCapacity: 20});
-        const body = this.encodeBody();
+        const body = await this.encodeBody();
         const actualBody = body.select(0, body.offset);
 
 
@@ -23,8 +23,8 @@ export abstract class Request {
         Int64Coder.shared.encode(this.messageId, data);
         IntCoder.shared.encode(actualBody.capacity, data);
 
-        return data.appending(actualBody).bytes;
+        return data.appending(actualBody);
     }
 
-    protected abstract encodeBody(): Data;
+    protected abstract encodeBody(): Promise<Data>;
 }
